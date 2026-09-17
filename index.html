@@ -1,1 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEIAS - Colégio Irmã Ambrósia Sabatovich</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+    <!-- Menu de Navegação -->
+    <header class="navbar">
+        <div class="logo">CEIAS</div>
+        <nav>
+            <button onclick="nav('home')">Início</button>
+            <button onclick="nav('informacoes')">Informações</button>
+            <button onclick="nav('imagens')">Imagens</button>
+            <button onclick="nav('funcionarios')">Funcionários</button>
+            <button onclick="nav('avaliacao')">Avaliação</button>
+            <button onclick="nav('localizacao')">Localização</button>
+            <button onclick="nav('eventos')">Eventos</button>
+            <button onclick="nav('historia')">História</button>
+        </nav>
+    </header>
+
+    <main class="content">
+
+        <!-- ABA PRINCIPAL -->
+        <section id="home" class="page active">
+            <div class="hero">
+                <h1>Bem-vindo ao CEIAS</h1>
+                <p>Aqui você irá acompanhar tudo o que precisa saber.</p>
+            </div>
+        </section>
+
+        <!-- INFORMAÇÕES -->
+        <section id="informacoes" class="page">
+            <h2>Informações do Colégio</h2>
+            <div class="info-grid">
+                <div class="card">
+                    <h3>Atendimento</h3>
+                    <p><strong>Gmail:</strong> contato@ceias.edu.br</p>
+                    <p><strong>WhatsApp:</strong> (41) 99999-8888</p>
+                    <p><strong>Telefone:</strong> (41) 3333-2222</p>
+                </div>
+                <div class="card">
+                    <h3>Funcionamento</h3>
+                    <p><strong>Funcionamento do Colégio:</strong> Segunda a Sexta, das 07:00 às 18:00</p>
+                    <p><strong>Atendimento Pedagógico:</strong> Terças e Quintas, com agendamento prévio.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- IMAGENS -->
+        <section id="imagens" class="page">
+            <h2>Galeria de Imagens</h2>
+            <div class="gallery">
+                <div class="gallery-item"><img src="https://via.placeholder.com/300x200?text=Entrada" alt="Entrada"><p>Entrada</p></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/300x200?text=Salas" alt="Salas"><p>Salas</p></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/300x200?text=Biblioteca" alt="Biblioteca"><p>Biblioteca</p></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/300x200?text=Refeitorio" alt="Refeitório"><p>Refeitório</p></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/300x200?text=Quadras" alt="Quadras"><p>Quadras</p></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/300x200?text=Uniforme" alt="Uniforme"><p>Uniforme</p></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/300x200?text=Turmas" alt="Turmas"><p>Turmas</p></div>
+            </div>
+        </section>
+
+        <!-- FUNCIONÁRIOS -->
+        <section id="funcionarios" class="page">
+            <h2>Equipe Escolar</h2>
+            <div class="filter-buttons">
+                <button onclick="verFuncionario('professores')">Professores</button>
+                <button onclick="verFuncionario('pedagógico')">Pedagógico</button>
+                <button onclick="verFuncionario('inspetora')">Inspetora</button>
+                <button onclick="verFuncionario('limpeza')">Limpeza</button>
+                <button onclick="verFuncionario('merenda')">Merenda</button>
+            </div>
+            <div id="funcionario-card" class="card-detalhe">
+                <p>Selecione uma categoria para visualizar o funcionário.</p>
+            </div>
+        </section>
+
+        <!-- AVALIAÇÃO -->
+        <section id="avaliacao" class="page">
+            <h2>Avaliações e Opiniões</h2>
+            <div class="comment-box">
+                <input type="text" id="nome-user" placeholder="Seu nome...">
+                <textarea id="texto-opiniao" placeholder="Escreva sua opinião sobre o colégio..."></textarea>
+                <button onclick="enviarComentario()">Publicar Opinião</button>
+            </div>
+            <h3>Comentários da Comunidade</h3>
+            <div id="mural-comentarios" class="mural">
+                <div class="comentario-item">
+                    <strong>Maria Silva:</strong>
+                    <p>Excelente colégio! Os professores são extremamente dedicados.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- LOCALIZAÇÃO -->
+        <section id="localizacao" class="page">
+            <h2>Localização</h2>
+            <p><strong>Colégio Irmã Ambrósia Sabatovich</strong></p>
+            <p>Colônia Marcelino — São José dos Pinhais (PR)</p>
+            <div class="mapa-box">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14389.288283307527!2d-49.1950!3d-25.6277!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjXCsDM3JzM5LjcyIlMgNDnCsDExJzQyLjAwIlc!5e0!3m2!1pt-BR!2sbr!4v1600000000000" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </section>
+
+        <!-- EVENTOS -->
+        <section id="eventos" class="page">
+            <h2>Eventos do CEIAS</h2>
+            <div class="event-nav">
+                <button onclick="abrirEvento('primavera')">Primavera Fest</button>
+                <button onclick="abrirEvento('cultural')">Semana Cultural</button>
+            </div>
+
+            <!-- Sub-aba Primavera Fest -->
+            <div id="evento-primavera" class="evento-detalhe">
+                <div class="banner-rosa" id="banner-rosa">
+                    <h2>Bem-vindo à Primavera Fest! Aqui você vai acompanhar o nosso evento.</h2>
+                </div>
+                <div class="evento-conteudo">
+                    <p class="data-evento">📅 Data: 12/09/2026</p>
+                    <div class="gallery">
+                        <div class="gallery-item"><img src="https://via.placeholder.com/250x250?text=Menino+e+Menina+CEIAS" alt="Menino e Menina CEIAS"><p>Garoto e Garota CEIAS</p></div>
+                        <div class="gallery-item"><img src="https://via.placeholder.com/250x250?text=Foto+da+Festa" alt="Festa"><p>Festa da Primavera</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sub-aba Semana Cultural -->
+            <div id="evento-cultural" class="evento-detalhe">
+                <div class="evento-conteudo">
+                    <h3>Fotos das Turmas</h3>
+                    <div class="gallery">
+                        <div class="gallery-item"><img src="https://via.placeholder.com/250x180?text=Turma+A" alt="Turma A"><p>Turmas</p></div>
+                        <div class="gallery-item"><img src="https://via.placeholder.com/250x180?text=Turma+B" alt="Turma B"><p>Apresentações</p></div>
+                    </div>
+                    <br>
+                    <button class="btn-express" onclick="abrirJornal()">EXPRESS CEIAS</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- HISTÓRIA DO COLÉGIO -->
+        <section id="historia" class="page">
+            <h2>O sacrifício e o legado de fé: A história de Irmã Ambrósia Sabatovich</h2>
+            <div class="texto-historia">
+                <p>A história do Colégio Irmã Ambrósia e das instituições que carregam seu nome está profundamente entrelaçada com a vida, a dedicação e o ato de heroísmo extremo de uma religiosa que marcou a comunidade ucraniana no Paraná: Irmã Ambrósia Ana Sabatovycz.</p>
+
+                <h3>Do Trabalho Comunitário ao Ensino</h3>
+                <p>Nascida na Ucrânia e trazida ao Brasil ainda bebê, Ambrósia ingressou na Congregação das Irmãs Servas de Maria Imaculada. Em 1931, sua trajetória cruzou-se com a da Colônia Marcelino, em São José dos Pinhais (PR). Naquela comunidade de imigrantes, ela atuou como professora, catequista e enfermeira. Mais do que alfabetizar, a religiosa preservava a cultura local ensinando o idioma ucraniano e cuidando da saúde dos moradores, tornando-se uma figura central e muito querida na região.</p>
+                <p>Décadas mais tarde, em honra a esse trabalho fundamental, a comunidade escolar da Colônia Marcelino batizou a instituição local como Centro de Educação Católica (CEC) Irmã Ambrósia Sabatovich, perpetuando seu nome no local onde ela plantou as primeiras sementes da educação.</p>
+
+                <h3>O Sacrifício Heróico em Rio das Antas</h3>
+                <p>Anos após sua passagem por São José dos Pinhais, Irmã Ambrósia foi transferida para o município de Cruz Machado (PR), no distrito de Rio das Antas, para trabalhar em um internato e orfanato que acolhia dezenas de meninas da região.</p>
+                <p>Na madrugada de 28 de fevereiro de 1943, uma tragédia mudou para sempre a história do local. Um incêndio devastador começou a consumir a estrutura de madeira do internato enquanto todos dormiam. Ao perceber o fogo, Irmã Ambrósia não hesitou: correu repetidas vezes para dentro do prédio em chamas, conseguindo salvar a grande maioria das estudantes que estavam presas nos dormitórios.</p>
+                <p>No entanto, ao notar a ausência de algumas crianças, ela entrou no local pela última vez. O teto desabou, e Irmã Ambrósia faleceu heroicamente no incêndio, abraçada a seis de suas alunas, em um ato de amor e doação total.</p>
+
+                <h3>Memória Viva e Beatificação</h3>
+                <p>O sacrifício da religiosa comoveu o Paraná e a comunidade ucraniana ao redor do mundo. Em 2008, devido à sua fama de santidade e ao martírio por caridade, a Igreja Católica deu início ao seu processo oficial de beatificação, tornando-a Serva de Deus.</p>
+                <p>Hoje, seja através do colégio na Colônia Marcelino ou das memórias preservadas em Cruz Machado, o nome de Irmã Ambrósia permanece como um símbolo de amor ao próximo, educação e coragem inabalável.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal do Jornal (Express CEIAS) -->
+    <div id="modal-jornal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="fecharJornal()">&times;</span>
+            <h2>📰 Jornal EXPRESS CEIAS</h2>
+            <p><strong>Edição Especial: Semana Cultural</strong></p>
+            <hr>
+            <p>Nossos alunos deram um show de cultura, dança e artes! Acompanhe a cobertura das apresentações e depoimentos na íntegra das turmas participantes.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,278 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f7f6;
+    color: #333;
+    overflow-x: hidden;
+}
+
+/* Header e Navegação */
+.navbar {
+    background-color: #003366; /* Azul do CEIAS */
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar nav button {
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    margin: 0 2px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: 0.3s;
+}
+
+.navbar nav button:hover {
+    background-color: #00509d;
+    border-radius: 4px;
+}
+
+/* Layout das Páginas */
+.content {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.page {
+    display: none;
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.page.active {
+    display: block;
+}
+
+/* Home */
+.hero {
+    background-color: #00509d;
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.hero h1 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+/* Informações */
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.card {
+    background: #eef2f5;
+    padding: 15px;
+    border-radius: 6px;
+}
+
+/* Galeria */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.gallery-item {
+    background: #eee;
+    border-radius: 6px;
+    overflow: hidden;
+    text-align: center;
+    width: 200px;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+}
+
+.gallery-item p {
+    padding: 8px;
+    font-weight: bold;
+}
+
+/* Funcionários */
+.filter-buttons {
+    margin-bottom: 20px;
+}
+
+.filter-buttons button {
+    background-color: #003366;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    margin-right: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.card-detalhe {
+    background-color: #eef2f5;
+    padding: 20px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.card-detalhe img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    object-fit: cover;
+}
+
+/* Avaliação */
+.comment-box input, .comment-box textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.comment-box textarea {
+    height: 80px;
+}
+
+.comment-box button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.mural {
+    margin-top: 15px;
+}
+
+.comentario-item {
+    background: #f9f9f9;
+    border-left: 4px solid #003366;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/* Eventos */
+.event-nav button {
+    background-color: #444;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.evento-detalhe {
+    display: none;
+    margin-top: 20px;
+    position: relative;
+}
+
+/* Animação Rosa Primavera */
+.banner-rosa {
+    background-color: #ff69b4;
+    color: white;
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.flor {
+    position: absolute;
+    top: -20px;
+    font-size: 20px;
+    animation: cair 4s linear infinite;
+}
+
+@keyframes cair {
+    to {
+        transform: translateY(150px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.data-evento {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.btn-express {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* História */
+.texto-historia h3 {
+    margin-top: 20px;
+    color: #003366;
+}
+
+.texto-historia p {
+    margin-top: 8px;
+    line-height: 1.6;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px; right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+}
