@@ -11,8 +11,8 @@
     <!-- Menu de Navegação Superior -->
     <header class="navbar">
         <div class="logo-container">
-            <img src="logo colegio.jpg" alt="Logo CEIAS" class="nav-logo">
-            <span class="logo-text">C.E.I.A.S</span>
+            <div class="logo-icon">CEIAS</div>
+            <span class="school-name">C.E.I.A.S</span>
         </div>
         <nav>
             <button onclick="nav('home')">Início</button>
@@ -28,39 +28,23 @@
 
     <main class="content">
 
-        <!-- ABA PRINCIPAL (HERO IMPACTANTE) -->
+        <!-- ABA PRINCIPAL -->
         <section id="home" class="page active">
             <div class="hero-impact">
                 <div class="hero-content">
-                    <img src="logo colegio.jpg" alt="Logo Colégio CEIAS" class="hero-logo">
+                    <div class="hero-logo-box">
+                        <span class="hero-logo">CEIAS</span>
+                    </div>
                     <h1>COLÉGIO ESTADUAL DO CAMPO<br><span>IR. AMBRÓSIA SABATOVICH</span></h1>
-                    <p class="slogan">"Educando para a Comunidade"</p>
+                    <p class="hero-subtext">"Educando para a Comunidade"</p>
                     <div class="hero-banner-phrase">
                         <p>✨ “Bem-vindo ao CEIAS, aqui você irá acompanhar tudo o que precisa saber” ✨</p>
                     </div>
-                    <div class="hero-actions">
-                        <button onclick="nav('informacoes')" class="btn-hero primary">Explorar Informações</button>
-                        <button onclick="nav('eventos')" class="btn-hero secondary">Ver Próximos Eventos</button>
+                    <br>
+                    <div class="hero-buttons">
+                        <button onclick="nav('informacoes')" class="btn-hero-primary">Explorar Informações</button>
+                        <button onclick="nav('eventos')" class="btn-hero-secondary">Ver Próximos Eventos</button>
                     </div>
-                </div>
-            </div>
-
-            <!-- Destaques Rápidos -->
-            <div class="quick-cards">
-                <div class="q-card" onclick="nav('informacoes')">
-                    <span class="q-icon">📞</span>
-                    <h3>Contato & Horários</h3>
-                    <p>Atendimento pedagógico e canais diretos.</p>
-                </div>
-                <div class="q-card" onclick="nav('eventos')">
-                    <span class="q-icon">🎉</span>
-                    <h3>Eventos em Destaque</h3>
-                    <p>Primavera Fest & Semana Cultural.</p>
-                </div>
-                <div class="q-card" onclick="nav('historia')">
-                    <span class="q-icon">📜</span>
-                    <h3>Legado de Fé e Coragem</h3>
-                    <p>Conheça a história da Irmã Ambrósia.</p>
                 </div>
             </div>
         </section>
@@ -69,16 +53,14 @@
         <section id="informacoes" class="page">
             <h2 class="section-title">Informações do Colégio</h2>
             <div class="info-grid">
-                <div class="card info-card">
-                    <div class="card-icon">✉️</div>
-                    <h3>Canais de Contato</h3>
+                <div class="card card-blue-light">
+                    <h3>✉️ Canais de Contato</h3>
                     <p><strong>Gmail:</strong> contato@ceias.edu.br</p>
                     <p><strong>WhatsApp:</strong> (41) 99999-8888</p>
                     <p><strong>Telefone:</strong> (41) 3333-2222</p>
                 </div>
-                <div class="card info-card">
-                    <div class="card-icon">🕒</div>
-                    <h3>Horários de Funcionamento</h3>
+                <div class="card card-blue-mid">
+                    <h3>🕒 Horários de Funcionamento</h3>
                     <p><strong>Funcionamento do Colégio:</strong><br>Segunda a Sexta-feira, das 07h00 às 18h00</p>
                     <br>
                     <p><strong>Atendimento Pedagógico:</strong><br>Terças e Quintas-feiras, mediante agendamento.</p>
@@ -104,14 +86,14 @@
         <section id="funcionarios" class="page">
             <h2 class="section-title">Nossa Equipe</h2>
             <div class="filter-buttons">
-                <button class="btn-filter" onclick="verFuncionario('professores')">Professores</button>
-                <button class="btn-filter" onclick="verFuncionario('pedagógico')">Pedagógico</button>
-                <button class="btn-filter" onclick="verFuncionario('inspetora')">Inspetora</button>
-                <button class="btn-filter" onclick="verFuncionario('limpeza')">Limpeza</button>
-                <button class="btn-filter" onclick="verFuncionario('merenda')">Merenda</button>
+                <button class="btn-blue" onclick="verFuncionario('professores')">Professores</button>
+                <button class="btn-blue" onclick="verFuncionario('pedagogico')">Pedagógico</button>
+                <button class="btn-blue" onclick="verFuncionario('inspetora')">Inspetora</button>
+                <button class="btn-blue" onclick="verFuncionario('limpeza')">Limpeza</button>
+                <button class="btn-blue" onclick="verFuncionario('merenda')">Merenda</button>
             </div>
             <div id="funcionario-card" class="card-detalhe">
-                <p>Selecione uma categoria para conhecer nossos profissionais.</p>
+                <p>Selecione uma categoria acima para conhecer nossos profissionais.</p>
             </div>
         </section>
 
@@ -124,13 +106,11 @@
                 <textarea id="texto-opiniao" placeholder="Escreva seu comentário ou avaliação sobre o CEIAS..."></textarea>
                 <button class="btn-submit" onclick="enviarComentario()">Publicar Opinião</button>
             </div>
+            <br>
             <h3>Comentários Recentes</h3>
             <div id="mural-comentarios" class="mural">
                 <div class="comentario-item">
-                    <div class="comentario-header">
-                        <strong>Ana Paula</strong>
-                        <span class="stars">⭐⭐⭐⭐⭐</span>
-                    </div>
+                    <strong>Ana Paula:</strong>
                     <p>O CEIAS é uma escola incrível, muito organizada e acolhedora com os alunos!</p>
                 </div>
             </div>
@@ -139,116 +119,89 @@
         <!-- LOCALIZAÇÃO -->
         <section id="localizacao" class="page">
             <h2 class="section-title">Localização</h2>
-            <div class="card text-center">
+            <div class="card card-blue-light">
                 <h3>Colégio Estadual do Campo Irmã Ambrósia Sabatovich</h3>
                 <p>📍 Colônia Marcelino — São José dos Pinhais (PR)</p>
             </div>
+            <br>
             <div class="mapa-box">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14389.288283307527!2d-49.1950!3d-25.6277!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjXCsDM3JzM5LjcyIlMgNDnCsDExJzQyLjAwIlc!5e0!3m2!1pt-BR!2sbr!4v1600000000000" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14389.288283307527!2d-49.1950!3d-25.6277!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjXCsDM3JzM5LjcyIlMgNDnCsDExJzQyLjAwIlc!5e0!3m2!1pt-BR!2sbr!4v1600000000000" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </section>
 
         <!-- EVENTOS -->
         <section id="eventos" class="page">
             <h2 class="section-title">Eventos do CEIAS</h2>
-            <p class="subtitle">Clique em um dos eventos abaixo para abrir a experiência interativa:</p>
-            
-            <div class="event-selection">
-                <button class="btn-event primavera-btn" onclick="abrirEvento('primavera')">
-                    🌸 PRIMAVERA FEST 🦋
-                </button>
-                <button class="btn-event cultural-btn" onclick="abrirEvento('cultural')">
-                    🎭 SEMANA CULTURAL 🎨
-                </button>
+            <p>Clique em um dos eventos abaixo para visualizar:</p>
+            <br>
+            <div class="event-nav">
+                <button class="btn-event-prim" onclick="abrirEvento('primavera')">🌸 PRIMAVERA FEST 🦋</button>
+                <button class="btn-event-cult" onclick="abrirEvento('cultural')">🎭 SEMANA CULTURAL 🎨</button>
             </div>
 
-            <!-- SUB-ABA PRIMAVERA FEST (TELA ROXA/ROSA) -->
-            <div id="evento-primavera" class="fullscreen-pink">
-                <button class="btn-close-event" onclick="fecharEvento('evento-primavera')">✕ Voltar aos Eventos</button>
+            <!-- SUB-ABA PRIMAVERA FEST -->
+            <div id="evento-primavera" class="evento-detalhe">
+                <div class="aba-rosa-full">
+                    <div id="flores-container" class="flores-container"></div>
+                    <div id="borboletas-container" class="borboletas-container"></div>
 
-                <!-- Containers para Animações dinâmicas -->
-                <div id="flores-container"></div>
-                <div id="borboletas-container"></div>
-
-                <div class="pink-content">
-                    <h1 class="pink-title">🌸 BEM-VINDO À PRIMAVERA FEST 🌸</h1>
-                    <p class="pink-subtitle">Aqui você vai acompanhar o nosso evento mais florido do ano!</p>
+                    <h1 class="titulo-rosa">🌸 BEM-VINDO À PRIMAVERA FEST 🌸</h1>
+                    <p class="sub-rosa">Aqui você vai acompanhar o nosso evento mais florido do ano!</p>
                     
-                    <div class="pink-date-badge">
-                        📅 DATA DO EVENTO: 12/09/2026
-                    </div>
-
-                    <div class="pink-gallery">
-                        <div class="pink-card">
-                            <img src="https://via.placeholder.com/300x300/ffb6c1/ffffff?text=Menino+e+Menina+CEIAS" alt="Garoto e Garota CEIAS">
-                            <h3>Menino e Menina CEIAS</h3>
-                        </div>
-                        <div class="pink-card">
-                            <img src="https://via.placeholder.com/300x300/ff69b4/ffffff?text=Foto+da+Festa+Primavera" alt="Foto da Festa">
-                            <h3>Foto da Festa</h3>
+                    <div class="card-rosa-info">
+                        <p class="data-destaque">📅 DATA DO EVENTO: 12/09/2026</p>
+                        <div class="gallery">
+                            <div class="gallery-item">
+                                <img src="https://via.placeholder.com/300x300/ffb6c1/ffffff?text=Menino+e+Menina+CEIAS" alt="Garoto e Garota CEIAS">
+                                <p>Menino e Menina CEIAS</p>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="https://via.placeholder.com/300x300/ff69b4/ffffff?text=Foto+da+Festa" alt="Foto da Festa">
+                                <p>Foto da Festa</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- SUB-ABA SEMANA CULTURAL (COM INTRO CULTURAL) -->
+            <!-- SUB-ABA SEMANA CULTURAL -->
             <div id="evento-cultural" class="evento-detalhe">
-                
-                <!-- Intro Cultural -->
-                <div class="cultural-intro">
-                    <div class="cultural-banner">
-                        <h2>🎭 Bem-vindo à Semana Cultural CEIAS 🎨</h2>
-                        <p>Um mergulho na arte, música, dança, literatura e nas tradições da nossa comunidade!</p>
-                    </div>
-                    <div class="cultural-icons-bar">
-                        <div class="c-icon-item"><span>🎨</span><p>Artes Plásticas</p></div>
-                        <div class="c-icon-item"><span>🎵</span><p>Música & Canto</p></div>
-                        <div class="c-icon-item"><span>💃</span><p>Dança Ucraniana</p></div>
-                        <div class="c-icon-item"><span>📚</span><p>Literatura</p></div>
-                        <div class="c-icon-item"><span>🎭</span><p>Teatro</p></div>
-                    </div>
+                <div class="intro-cultural-banner">
+                    <span class="icon-art">🎭🎨🎵</span>
+                    <h2>Bem-vindo à Semana Cultural CEIAS</h2>
+                    <p>Um mergulho na arte, música, dança e cultura!</p>
                 </div>
 
-                <!-- Conteúdo das Turmas -->
-                <div class="cultural-body">
-                    <h3>📷 Galeria de Fotos das Turmas</h3>
-                    <div class="gallery">
-                        <div class="gallery-item"><img src="https://via.placeholder.com/350x230?text=Apresentacoes+Turma+A" alt="Turma A"><p>Apresentações Culturais</p></div>
-                        <div class="gallery-item"><img src="https://via.placeholder.com/350x230?text=Exposicao+de+Artes" alt="Turma B"><p>Exposição de Trabalhos</p></div>
-                        <div class="gallery-item"><img src="https://via.placeholder.com/350x230?text=Dancas+Tipicas" alt="Turma C"><p>Danças Típicas</p></div>
-                    </div>
-
-                    <div class="express-callout">
-                        <h3>Quer conferir todas as notícias e matérias da Semana Cultural?</h3>
-                        <button class="btn-express" onclick="abrirJornal()">📰 EXPRESS CEIAS - JORNAL CULTURAL</button>
-                    </div>
+                <h3>📷 Fotos das Turmas</h3>
+                <br>
+                <div class="gallery">
+                    <div class="gallery-item"><img src="https://via.placeholder.com/350x230?text=Turma+A" alt="Turma A"><p>Apresentações Culturais</p></div>
+                    <div class="gallery-item"><img src="https://via.placeholder.com/350x230?text=Turma+B" alt="Turma B"><p>Exposição de Artes</p></div>
                 </div>
+                <br><br>
+                <button class="btn-express" onclick="abrirJornal()">📰 EXPRESS CEIAS - JORNAL CULTURAL</button>
             </div>
         </section>
 
         <!-- HISTÓRIA DO COLÉGIO -->
         <section id="historia" class="page">
             <h2 class="section-title">História do Colégio</h2>
-            <div class="historia-container">
-                <div class="historia-header">
-                    <h2>O sacrifício e o legado de fé: A história de Irmã Ambrósia Sabatovich</h2>
-                </div>
-                <div class="texto-historia">
-                    <p class="lead">A história do Colégio Irmã Ambrósia e das instituições que carregam seu nome está profundamente entrelaçada com a vida, a dedicação e o ato de heroísmo extremo de uma religiosa que marcou a comunidade ucraniana no Paraná: Irmã Ambrósia Ana Sabatovycz.</p>
+            <div class="texto-historia">
+                <h3>O sacrifício e o legado de fé: A história de Irmã Ambrósia Sabatovich</h3>
+                <p>A história do Colégio Irmã Ambrósia e das instituições que carregam seu nome está profundamente entrelaçada com a vida, a dedicação e o ato de heroísmo extremo de uma religiosa que marcou a comunidade ucraniana no Paraná: Irmã Ambrósia Ana Sabatovycz.</p>
 
-                    <h3>Do Trabalho Comunitário ao Ensino</h3>
-                    <p>Nascida na Ucrânia e trazida ao Brasil ainda bebê, Ambrósia ingressou na Congregação das Irmãs Servas de Maria Imaculada. Em 1931, sua trajetória cruzou-se com a da Colônia Marcelino, em São José dos Pinhais (PR). Naquela comunidade de imigrantes, ela atuou como professora, catequista e enfermeira. Mais do que alfabetizar, a religiosa preservava a cultura local ensinando o idioma ucraniano e cuidando da saúde dos moradores, tornando-se uma figura central e muito querida na região.</p>
-                    <p>Décadas mais tarde, em honra a esse trabalho fundamental, a comunidade escolar da Colônia Marcelino batizou a instituição local como Centro de Educação Católica (CEC) Irmã Ambrósia Sabatovich, perpetuando seu nome no local onde ela plantou as primeiras sementes da educação.</p>
+                <h3>Do Trabalho Comunitário ao Ensino</h3>
+                <p>Nascida na Ucrânia e trazida ao Brasil ainda bebê, Ambrósia ingressou na Congregação das Irmãs Servas de Maria Imaculada. Em 1931, sua trajetória cruzou-se com a da Colônia Marcelino, em São José dos Pinhais (PR). Naquela comunidade de imigrantes, ela atuou como professora, catequista e enfermeira. Mais do que alfabetizar, a religiosa preservava a cultura local ensinando o idioma ucraniano e cuidando da saúde dos moradores, tornando-se uma figura central e muito querida na região.</p>
+                <p>Décadas mais tarde, em honra a esse trabalho fundamental, a comunidade escolar da Colônia Marcelino batizou a instituição local como Centro de Educação Católica (CEC) Irmã Ambrósia Sabatovich, perpetuando seu nome no local onde ela plantou as primeiras sementes da educação.</p>
 
-                    <h3>O Sacrifício Heróico em Rio das Antas</h3>
-                    <p>Anos após sua passagem por São José dos Pinhais, Irmã Ambrósia foi transferida para o município de Cruz Machado (PR), no distrito de Rio das Antas, para trabalhar em um internato e orfanato que acolhia dezenas de meninas da região.</p>
-                    <p>Na madrugada de 28 de fevereiro de 1943, uma tragédia mudou para sempre a história do local. Um incêndio devastador começou a consumir a estrutura de madeira do internato enquanto todos dormiam. Ao perceber o fogo, Irmã Ambrósia não hesitou: correu repetidas vezes para dentro do prédio em chamas, conseguindo salvar a grande maioria das estudantes que estavam presas nos dormitórios.</p>
-                    <p>No entanto, ao notar a ausência de algumas crianças, ela entrou no local pela última vez. O teto desabou, e Irmã Ambrósia faleceu heroicamente no incêndio, abraçada a seis de suas alunas, em um ato de amor e doação total.</p>
+                <h3>O Sacrifício Heróico em Rio das Antas</h3>
+                <p>Anos após sua passagem por São José dos Pinhais, Irmã Ambrósia foi transferida para o município de Cruz Machado (PR), no distrito de Rio das Antas, para trabalhar em um internato e orfanato que acolhia dezenas de meninas da região.</p>
+                <p>Na madrugada de 28 de fevereiro de 1943, uma tragédia mudou para sempre a história do local. Um incêndio devastador começou a consumir a estrutura de madeira do internato enquanto todos dormiam. Ao perceber o fogo, Irmã Ambrósia não hesitou: correu repetidas vezes para dentro do prédio em chamas, conseguindo salvar a grande maioria das estudantes que estavam presas nos dormitórios.</p>
+                <p>No entanto, ao notar a ausência de algumas crianças, ela entrou no local pela última vez. O teto desabou, e Irmã Ambrósia faleceu heroicamente no incêndio, abraçada a seis de suas alunas, em um ato de amor e doação total.</p>
 
-                    <h3>Memória Viva e Beatificação</h3>
-                    <p>O sacrifício da religiosa comoveu o Paraná e a comunidade ucraniana ao redor do mundo. Em 2008, devido à sua fama de santidade e ao martírio por caridade, a Igreja Católica deu início ao seu processo oficial de beatificação, tornando-a Serva de Deus.</p>
-                    <p>Hoje, seja através do colégio na Colônia Marcelino ou das memórias preservadas em Cruz Machado, o nome de Irmã Ambrósia permanece como um símbolo de amor ao próximo, educação e coragem inabalável.</p>
-                </div>
+                <h3>Memória Viva e Beatificação</h3>
+                <p>O sacrifício da religiosa comoveu o Paraná e a comunidade ucraniana ao redor do mundo. Em 2008, devido à sua fama de santidade e ao martírio por caridade, a Igreja Católica deu início ao seu processo oficial de beatificação, tornando-a Serva de Deus.</p>
+                <p>Hoje, seja através do colégio na Colônia Marcelino ou das memórias preservadas em Cruz Machado, o nome de Irmã Ambrósia permanece como um símbolo de amor ao próximo, educação e coragem inabalável.</p>
             </div>
         </section>
 
@@ -258,22 +211,10 @@
     <div id="modal-jornal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="fecharJornal()">&times;</span>
-            <div class="jornal-header">
-                <h2>📰 EXPRESS CEIAS</h2>
-                <p>O Jornal Oficial da Semana Cultural</p>
-            </div>
-            <hr>
-            <div class="jornal-body">
-                <h3>Edição Especial: Celebrando Nossas Raízes e Arte</h3>
-                <p>Durante toda a Semana Cultural, os alunos do CEIAS demonstraram talento excepcional em apresentações de dança folclórica, peças teatrais, poemas e artes plásticas.</p>
-                <br>
-                <h4>Destaques da Semana:</h4>
-                <ul>
-                    <li><strong>Dança Ucraniana:</strong> Apresentação emocionante das turmas do ensino médio.</li>
-                    <li><strong>Feira de Literatura:</strong> Releituras de obras clássicas e locais.</li>
-                    <li><strong>Concurso de Pintura:</strong> Quadros inspirados na história da Colônia Marcelino.</li>
-                </ul>
-            </div>
+            <h2>📰 EXPRESS CEIAS</h2>
+            <p><strong>O Jornal Oficial da Semana Cultural</strong></p>
+            <hr><br>
+            <p>Durante toda a Semana Cultural, os alunos do CEIAS demonstraram talento excepcional em apresentações de dança folclórica, peças teatrais, poemas e artes plásticas.</p>
         </div>
     </div>
 

@@ -38,11 +38,13 @@ function verFuncionario(categoria) {
     const info = funcionariosData[categoria];
     const container = document.getElementById('funcionario-card');
     
-    container.innerHTML = `
-        <img src="${info.foto}" alt="${info.nome}">
-        <h3>${info.nome}</h3>
-        <p>${info.funcao}</p>
-    `;
+    if (info) {
+        container.innerHTML = `
+            <img src="${info.foto}" alt="${info.nome}">
+            <h3>${info.nome}</h3>
+            <p>${info.funcao}</p>
+        `;
+    }
 }
 
 // Enviar Comentário/Avaliação
@@ -66,7 +68,7 @@ function enviarComentario() {
     document.getElementById('texto-opiniao').value = '';
 }
 
-// Alternar entre Eventos
+// Alternar entre Sub-Eventos
 function abrirEvento(evento) {
     document.getElementById('evento-primavera').style.display = 'none';
     document.getElementById('evento-cultural').style.display = 'none';
@@ -79,37 +81,23 @@ function abrirEvento(evento) {
     }
 }
 
-// Efeitos de Animação: Flores e Borboletas
+// Animação de Flores
 function iniciarAnimacoesPrimavera() {
     const floresContainer = document.getElementById('flores-container');
-    const borboletasContainer = document.getElementById('borboletas-container');
-
     floresContainer.innerHTML = '';
-    borboletasContainer.innerHTML = '';
 
-    // Gerar Flores
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 15; i++) {
         const flor = document.createElement('span');
         flor.classList.add('flor-animada');
         flor.innerHTML = '🌸';
-        flor.style.left = Math.random() * 95 + '%';
-        flor.style.animationDelay = Math.random() * 3 + 's';
-        flor.style.animationDuration = (Math.random() * 3 + 3) + 's';
+        flor.style.left = Math.random() * 90 + '%';
+        flor.style.animationDelay = Math.random() * 2 + 's';
+        flor.style.animationDuration = (Math.random() * 2 + 3) + 's';
         floresContainer.appendChild(flor);
     }
-
-    // Gerar Borboletas Voando
-    const borboletas = ['🦋', '🦋', '🦋'];
-    borboletas.forEach((b, index) => {
-        const borboleta = document.createElement('span');
-        borboleta.classList.add('borboleta-animada');
-        borboleta.innerHTML = b;
-        borboleta.style.animationDelay = (index * 2.5) + 's';
-        borboletasContainer.appendChild(borboleta);
-    });
 }
 
-// Modal do Jornal EXPRESS CEIAS
+// Modal do Jornal
 function abrirJornal() {
     document.getElementById('modal-jornal').style.display = 'flex';
 }
