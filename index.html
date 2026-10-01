@@ -4,220 +4,642 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CEIAS - Colégio Estadual do Campo Ir. Ambrósia Sabatovich</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            900: '#001a35',
+                            800: '#002244',
+                            700: '#003366',
+                            600: '#00509d',
+                            500: '#0077b6',
+                            100: '#e0f2fe',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS Customizado -->
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-
-    <!-- Menu de Navegação Superior -->
-    <header class="navbar">
-        <div class="logo-container">
-            <div class="logo-icon">CEIAS</div>
-            <span class="school-name">C.E.I.A.S</span>
+<body class="min-h-screen flex flex-col">
+    <!-- Header / Navbar -->
+    <header class="bg-gradient-to-r from-navy-800 to-navy-700 text-white sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+               
+                <!-- Logo -->
+                <div class="flex items-center gap-3 cursor-pointer" onclick="nav('home')">
+                    <div class="bg-navy-500 text-white font-extrabold text-xl px-3 py-1.5 rounded-lg shadow-md tracking-wider">
+                        CEIAS
+                    </div>
+                    <div>
+                        <span class="font-bold text-lg leading-tight block">C.E.I.A.S</span>
+                        <span class="text-xs text-blue-200 hidden sm:block">Colégio Estadual do Campo Ir. Ambrósia Sabatovich</span>
+                    </div>
+                </div>
+                <!-- Navigation Links (Desktop) -->
+                <nav class="hidden md:flex space-x-1 lg:space-x-2 text-sm font-medium">
+                    <button onclick="nav('home')" class="nav-btn px-3 py-2 rounded-md hover:bg-navy-600 transition">Início</button>
+                    <button onclick="nav('informacoes')" class="nav-btn px-3 py-2 rounded-md hover:bg-navy-600 transition">Informações</button>
+                    <button onclick="nav('imagens')" class="nav-btn px-3 py-2 rounded-md hover:bg-navy-600 transition">Galeria</button>
+                    <button onclick="nav('funcionarios')" class="nav-btn px-3 py-2 rounded-md hover:bg-navy-600 transition">Equipe</button>
+                    <button onclick="nav('avaliacao')" class="nav-btn px-3 py-2 rounded-md hover:bg-navy-600 transition">Avaliações</button>
+                    <button onclick="nav('localizacao')" class="nav-btn px-3 py-2 rounded-md hover:bg-navy-600 transition">Localização</button>
+                    <button onclick="nav('eventos')" class="nav-btn px-3 py-2 rounded-md hover:bg-navy-600 transition">Eventos</button>
+                    <button onclick="nav('historia')" class="nav-btn px-3 py-2 rounded-md hover:bg-navy-600 transition">Nossa História</button>
+                </nav>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-md text-gray-200 hover:text-white hover:bg-navy-600 focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
         </div>
-        <nav>
-            <button onclick="nav('home')">Início</button>
-            <button onclick="nav('informacoes')">Informações</button>
-            <button onclick="nav('imagens')">Galeria</button>
-            <button onclick="nav('funcionarios')">Equipe</button>
-            <button onclick="nav('avaliacao')">Avaliações</button>
-            <button onclick="nav('localizacao')">Localização</button>
-            <button onclick="nav('eventos')">Eventos</button>
-            <button onclick="nav('historia')">Nossa História</button>
-        </nav>
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-navy-800 border-t border-navy-600 px-4 pt-2 pb-4 space-y-1">
+            <button onclick="nav('home'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-md text-white hover:bg-navy-600">Início</button>
+            <button onclick="nav('informacoes'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-md text-white hover:bg-navy-600">Informações</button>
+            <button onclick="nav('imagens'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-md text-white hover:bg-navy-600">Galeria</button>
+            <button onclick="nav('funcionarios'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-md text-white hover:bg-navy-600">Equipe</button>
+            <button onclick="nav('avaliacao'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-md text-white hover:bg-navy-600">Avaliações</button>
+            <button onclick="nav('localizacao'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-md text-white hover:bg-navy-600">Localização</button>
+            <button onclick="nav('eventos'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-md text-white hover:bg-navy-600">Eventos</button>
+            <button onclick="nav('historia'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-md text-white hover:bg-navy-600">Nossa História</button>
+        </div>
     </header>
 
-    <main class="content">
-
-        <!-- ABA PRINCIPAL -->
-        <section id="home" class="page active">
-            <div class="hero-impact">
-                <div class="hero-content">
-                    <div class="hero-logo-box">
-                        <span class="hero-logo">CEIAS</span>
+    <!-- Conteúdo Principal -->
+    <main class="flex-grow max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
+        <!-- ABA 1: HOME / PRINCIPAL -->
+        <section id="home" class="page-tab active">
+            <!-- Hero Impactante com Imagem Principal -->
+            <div class="bg-gradient-to-br from-navy-800 via-navy-700 to-navy-600 text-white rounded-2xl shadow-xl overflow-hidden mb-8">
+                <div class="grid md:grid-cols-2 gap-8 items-center p-6 sm:p-10 lg:p-12">
+                   
+                    <!-- Lado Esquerdo: Textos -->
+                    <div class="space-y-5">
+                        <div class="inline-block bg-white text-navy-800 font-extrabold text-2xl sm:text-3xl px-5 py-2 rounded-xl shadow-md tracking-wider">
+                            CEIAS
+                        </div>
+                        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+                            COLÉGIO ESTADUAL DO CAMPO <br>
+                            <span class="text-blue-300">IR. AMBRÓSIA SABATOVICH</span>
+                        </h1>
+                        <p class="text-lg text-blue-100 italic font-medium">
+                            "Educando para a Comunidade com dedicação, respeito e tradição"
+                        </p>
+                       
+                        <div class="bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-xl text-yellow-300 font-semibold text-sm sm:text-base">
+                            <i class="fa-solid fa-sparkles mr-2"></i>
+                            ✨ Bem-vindo ao CEIAS! Excelência acadêmica e compromisso no campo.
+                        </div>
+                        <div class="flex flex-wrap gap-3 pt-2">
+                            <button onclick="nav('informacoes')" class="bg-navy-500 hover:bg-blue-600 text-white font-bold px-6 py-3 rounded-lg shadow-lg transition transform hover:-translate-y-0.5">
+                                <i class="fa-solid fa-circle-info mr-2"></i>Explorar Informações
+                            </button>
+                            <button onclick="nav('eventos')" class="bg-transparent border-2 border-white hover:bg-white hover:text-navy-800 text-white font-bold px-6 py-3 rounded-lg shadow-lg transition transform hover:-translate-y-0.5">
+                                <i class="fa-solid fa-calendar-days mr-2"></i>Próximos Eventos
+                            </button>
+                        </div>
                     </div>
-                    <h1>COLÉGIO ESTADUAL DO CAMPO<br><span>IR. AMBRÓSIA SABATOVICH</span></h1>
-                    <p class="hero-subtext">"Educando para a Comunidade"</p>
-                    <div class="hero-banner-phrase">
-                        <p>✨ “Bem-vindo ao CEIAS, aqui você irá acompanhar tudo o que precisa saber” ✨</p>
-                    </div>
-                    <br>
-                    <div class="hero-buttons">
-                        <button onclick="nav('informacoes')" class="btn-hero-primary">Explorar Informações</button>
-                        <button onclick="nav('eventos')" class="btn-hero-secondary">Ver Próximos Eventos</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- INFORMAÇÕES -->
-        <section id="informacoes" class="page">
-            <h2 class="section-title">Informações do Colégio</h2>
-            <div class="info-grid">
-                <div class="card card-blue-light">
-                    <h3>✉️ Canais de Contato</h3>
-                    <p><strong>Gmail:</strong> contato@ceias.edu.br</p>
-                    <p><strong>WhatsApp:</strong> (41) 99999-8888</p>
-                    <p><strong>Telefone:</strong> (41) 3333-2222</p>
-                </div>
-                <div class="card card-blue-mid">
-                    <h3>🕒 Horários de Funcionamento</h3>
-                    <p><strong>Funcionamento do Colégio:</strong><br>Segunda a Sexta-feira, das 07h00 às 18h00</p>
-                    <br>
-                    <p><strong>Atendimento Pedagógico:</strong><br>Terças e Quintas-feiras, mediante agendamento.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- GALERIA DE IMAGENS -->
-        <section id="imagens" class="page">
-            <h2 class="section-title">Galeria de Imagens</h2>
-            <div class="gallery">
-                <div class="gallery-item"><img src="https://via.placeholder.com/400x300?text=Entrada+CEIAS" alt="Entrada"><p>Entrada</p></div>
-                <div class="gallery-item"><img src="https://via.placeholder.com/400x300?text=Salas+de+Aula" alt="Salas"><p>Salas de Aula</p></div>
-                <div class="gallery-item"><img src="https://via.placeholder.com/400x300?text=Biblioteca" alt="Biblioteca"><p>Biblioteca</p></div>
-                <div class="gallery-item"><img src="https://via.placeholder.com/400x300?text=Refeitorio" alt="Refeitório"><p>Refeitório</p></div>
-                <div class="gallery-item"><img src="https://via.placeholder.com/400x300?text=Quadras+Esportivas" alt="Quadras"><p>Quadras</p></div>
-                <div class="gallery-item"><img src="https://via.placeholder.com/400x300?text=Uniforme+Escolar" alt="Uniforme"><p>Uniforme</p></div>
-                <div class="gallery-item"><img src="https://via.placeholder.com/400x300?text=Turmas+CEIAS" alt="Turmas"><p>Turmas</p></div>
-            </div>
-        </section>
-
-        <!-- FUNCIONÁRIOS -->
-        <section id="funcionarios" class="page">
-            <h2 class="section-title">Nossa Equipe</h2>
-            <div class="filter-buttons">
-                <button class="btn-blue" onclick="verFuncionario('professores')">Professores</button>
-                <button class="btn-blue" onclick="verFuncionario('pedagogico')">Pedagógico</button>
-                <button class="btn-blue" onclick="verFuncionario('inspetora')">Inspetora</button>
-                <button class="btn-blue" onclick="verFuncionario('limpeza')">Limpeza</button>
-                <button class="btn-blue" onclick="verFuncionario('merenda')">Merenda</button>
-            </div>
-            <div id="funcionario-card" class="card-detalhe">
-                <p>Selecione uma categoria acima para conhecer nossos profissionais.</p>
-            </div>
-        </section>
-
-        <!-- AVALIAÇÃO -->
-        <section id="avaliacao" class="page">
-            <h2 class="section-title">Espaço do Leitor / Avaliações</h2>
-            <div class="comment-box card">
-                <h3>Deixe sua Opinião</h3>
-                <input type="text" id="nome-user" placeholder="Digite seu nome...">
-                <textarea id="texto-opiniao" placeholder="Escreva seu comentário ou avaliação sobre o CEIAS..."></textarea>
-                <button class="btn-submit" onclick="enviarComentario()">Publicar Opinião</button>
-            </div>
-            <br>
-            <h3>Comentários Recentes</h3>
-            <div id="mural-comentarios" class="mural">
-                <div class="comentario-item">
-                    <strong>Ana Paula:</strong>
-                    <p>O CEIAS é uma escola incrível, muito organizada e acolhedora com os alunos!</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- LOCALIZAÇÃO -->
-        <section id="localizacao" class="page">
-            <h2 class="section-title">Localização</h2>
-            <div class="card card-blue-light">
-                <h3>Colégio Estadual do Campo Irmã Ambrósia Sabatovich</h3>
-                <p>📍 Colônia Marcelino — São José dos Pinhais (PR)</p>
-            </div>
-            <br>
-            <div class="mapa-box">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14389.288283307527!2d-49.1950!3d-25.6277!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjXCsDM3JzM5LjcyIlMgNDnCsDExJzQyLjAwIlc!5e0!3m2!1pt-BR!2sbr!4v1600000000000" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </section>
-
-        <!-- EVENTOS -->
-        <section id="eventos" class="page">
-            <h2 class="section-title">Eventos do CEIAS</h2>
-            <p>Clique em um dos eventos abaixo para visualizar:</p>
-            <br>
-            <div class="event-nav">
-                <button class="btn-event-prim" onclick="abrirEvento('primavera')">🌸 PRIMAVERA FEST 🦋</button>
-                <button class="btn-event-cult" onclick="abrirEvento('cultural')">🎭 SEMANA CULTURAL 🎨</button>
-            </div>
-
-            <!-- SUB-ABA PRIMAVERA FEST -->
-            <div id="evento-primavera" class="evento-detalhe">
-                <div class="aba-rosa-full">
-                    <div id="flores-container" class="flores-container"></div>
-                    <div id="borboletas-container" class="borboletas-container"></div>
-
-                    <h1 class="titulo-rosa">🌸 BEM-VINDO À PRIMAVERA FEST 🌸</h1>
-                    <p class="sub-rosa">Aqui você vai acompanhar o nosso evento mais florido do ano!</p>
-                    
-                    <div class="card-rosa-info">
-                        <p class="data-destaque">📅 DATA DO EVENTO: 12/09/2026</p>
-                        <div class="gallery">
-                            <div class="gallery-item">
-                                <img src="https://via.placeholder.com/300x300/ffb6c1/ffffff?text=Menino+e+Menina+CEIAS" alt="Garoto e Garota CEIAS">
-                                <p>Menino e Menina CEIAS</p>
-                            </div>
-                            <div class="gallery-item">
-                                <img src="https://via.placeholder.com/300x300/ff69b4/ffffff?text=Foto+da+Festa" alt="Foto da Festa">
-                                <p>Foto da Festa</p>
+                    <!-- Lado Direito: Imagem Principal da Capa -->
+                    <div class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-2xl blur opacity-30 group-hover:opacity-60 transition duration-300"></div>
+                        <div class="relative overflow-hidden rounded-2xl shadow-2xl bg-slate-800 border-2 border-white/20">
+                            <img id="main-school-img"
+                                 src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=80&w=1200&auto=format&fit=crop"
+                                 alt="Fachada do Colégio CEIAS"
+                                 class="w-full h-72 sm:h-96 object-cover transform transition duration-500 group-hover:scale-105">
+                            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 text-white text-xs sm:text-sm">
+                                <p class="font-bold flex items-center gap-2">
+                                    <i class="fa-solid fa-location-dot text-red-400"></i> Colônia Marcelino — São José dos Pinhais (PR)
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- SUB-ABA SEMANA CULTURAL -->
-            <div id="evento-cultural" class="evento-detalhe">
-                <div class="intro-cultural-banner">
-                    <span class="icon-art">🎭🎨🎵</span>
-                    <h2>Bem-vindo à Semana Cultural CEIAS</h2>
-                    <p>Um mergulho na arte, música, dança e cultura!</p>
+            <!-- NOVA SEÇÃO: PAINEL DE ESTATÍSTICAS E DESEMPENHO ACADÊMICO DO CEIAS -->
+            <div class="mb-10">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-3 h-8 bg-navy-600 rounded-full"></div>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-800">
+                        Indicadores & Conquistas do CEIAS
+                    </h2>
                 </div>
-
-                <h3>📷 Fotos das Turmas</h3>
-                <br>
-                <div class="gallery">
-                    <div class="gallery-item"><img src="https://via.placeholder.com/350x230?text=Turma+A" alt="Turma A"><p>Apresentações Culturais</p></div>
-                    <div class="gallery-item"><img src="https://via.placeholder.com/350x230?text=Turma+B" alt="Turma B"><p>Exposição de Artes</p></div>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                   
+                    <!-- Card 1: Quantidade de Alunos -->
+                    <div class="bg-white p-6 rounded-2xl shadow-md border-2 border-blue-100 hover:border-navy-500 hover:shadow-xl transition group">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 bg-blue-100 text-navy-600 rounded-xl flex items-center justify-center text-2xl group-hover:bg-navy-600 group-hover:text-white transition">
+                                <i class="fa-solid fa-user-graduate"></i>
+                            </div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full">Matrículas</span>
+                        </div>
+                        <h3 class="text-3xl sm:text-4xl font-black text-slate-800 mb-1">380+</h3>
+                        <p class="font-bold text-navy-800 text-sm">Alunos Atendidos</p>
+                        <p class="text-xs text-slate-500 mt-2">Ensino Fundamental II e Ensino Médio do Campo com acompanhamento dedicado.</p>
+                    </div>
+                    <!-- Card 2: Ganhando o Mundo -->
+                    <div class="bg-gradient-to-br from-indigo-900 to-navy-800 text-white p-6 rounded-2xl shadow-md border-2 border-indigo-700 hover:shadow-xl transition group">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 bg-amber-400 text-navy-900 rounded-xl flex items-center justify-center text-2xl font-black group-hover:scale-110 transition">
+                                <i class="fa-solid fa-earth-americas"></i>
+                            </div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-amber-300 bg-white/10 px-2.5 py-1 rounded-full border border-amber-300/30">Intercâmbio</span>
+                        </div>
+                        <h3 class="text-3xl sm:text-4xl font-black text-amber-300 mb-1">Destaque</h3>
+                        <p class="font-bold text-white text-sm">Ganhando o Mundo</p>
+                        <p class="text-xs text-indigo-200 mt-2">Estudantes selecionados para intercâmbio internacional no programa governamental do PR.</p>
+                    </div>
+                    <!-- Card 3: Base do ENEM -->
+                    <div class="bg-white p-6 rounded-2xl shadow-md border-2 border-emerald-100 hover:border-emerald-500 hover:shadow-xl transition group">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center text-2xl group-hover:bg-emerald-600 group-hover:text-white transition">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full">Nota Média</span>
+                        </div>
+                        <h3 class="text-3xl sm:text-4xl font-black text-slate-800 mb-1">Média Alta</h3>
+                        <p class="font-bold text-emerald-700 text-sm">Base Forte no ENEM</p>
+                        <p class="text-xs text-slate-500 mt-2">Desempenho consistente em Redação e Exatas acima da média das escolas rurais.</p>
+                    </div>
+                    <!-- Card 4: Classificação em Provas -->
+                    <div class="bg-white p-6 rounded-2xl shadow-md border-2 border-purple-100 hover:border-purple-500 hover:shadow-xl transition group">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center text-2xl group-hover:bg-purple-600 group-hover:text-white transition">
+                                <i class="fa-solid fa-award"></i>
+                            </div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-purple-600 bg-purple-50 px-2.5 py-1 rounded-full">Ranking NRE</span>
+                        </div>
+                        <h3 class="text-3xl sm:text-4xl font-black text-slate-800 mb-1">Nível A</h3>
+                        <p class="font-bold text-purple-800 text-sm">Prova Paraná & IDEB</p>
+                        <p class="text-xs text-slate-500 mt-2">Excelente nível de fluência leitora e proficiência matemática nas avaliações do Estado.</p>
+                    </div>
                 </div>
-                <br><br>
-                <button class="btn-express" onclick="abrirJornal()">📰 EXPRESS CEIAS - JORNAL CULTURAL</button>
+            </div>
+            <!-- Destaques Rápidos Clicáveis -->
+            <div class="grid md:grid-cols-3 gap-6">
+                <div onclick="nav('informacoes')" class="bg-white p-6 rounded-xl shadow-md border border-slate-100 hover:shadow-xl transition cursor-pointer group">
+                    <div class="w-12 h-12 bg-blue-100 text-navy-600 rounded-lg flex items-center justify-center text-2xl mb-4 group-hover:bg-navy-600 group-hover:text-white transition">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">Contato & Atendimento</h3>
+                    <p class="text-slate-600 text-sm">Acesse nossos canais no WhatsApp, e-mail do Gmail e telefone direto.</p>
+                </div>
+                <div onclick="nav('eventos')" class="bg-white p-6 rounded-xl shadow-md border border-slate-100 hover:shadow-xl transition cursor-pointer group">
+                    <div class="w-12 h-12 bg-pink-100 text-pink-600 rounded-lg flex items-center justify-center text-2xl mb-4 group-hover:bg-pink-600 group-hover:text-white transition">
+                        <i class="fa-solid fa-masks-theater"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">Eventos em Destaque</h3>
+                    <p class="text-slate-600 text-sm">Participe da Primavera Fest e confira as notícias no Jornal Cultural.</p>
+                </div>
+                <div onclick="nav('historia')" class="bg-white p-6 rounded-xl shadow-md border border-slate-100 hover:shadow-xl transition cursor-pointer group">
+                    <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-lg flex items-center justify-center text-2xl mb-4 group-hover:bg-amber-600 group-hover:text-white transition">
+                        <i class="fa-solid fa-book-bookmark"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">História e Memória</h3>
+                    <p class="text-slate-600 text-sm">Conheça a trajetória inspiradora e o ato heroico da Irmã Ambrósia Sabatovich.</p>
+                </div>
             </div>
         </section>
 
-        <!-- HISTÓRIA DO COLÉGIO -->
-        <section id="historia" class="page">
-            <h2 class="section-title">História do Colégio</h2>
-            <div class="texto-historia">
-                <h3>O sacrifício e o legado de fé: A história de Irmã Ambrósia Sabatovich</h3>
-                <p>A história do Colégio Irmã Ambrósia e das instituições que carregam seu nome está profundamente entrelaçada com a vida, a dedicação e o ato de heroísmo extremo de uma religiosa que marcou a comunidade ucraniana no Paraná: Irmã Ambrósia Ana Sabatovycz.</p>
-
-                <h3>Do Trabalho Comunitário ao Ensino</h3>
-                <p>Nascida na Ucrânia e trazida ao Brasil ainda bebê, Ambrósia ingressou na Congregação das Irmãs Servas de Maria Imaculada. Em 1931, sua trajetória cruzou-se com a da Colônia Marcelino, em São José dos Pinhais (PR). Naquela comunidade de imigrantes, ela atuou como professora, catequista e enfermeira. Mais do que alfabetizar, a religiosa preservava a cultura local ensinando o idioma ucraniano e cuidando da saúde dos moradores, tornando-se uma figura central e muito querida na região.</p>
-                <p>Décadas mais tarde, em honra a esse trabalho fundamental, a comunidade escolar da Colônia Marcelino batizou a instituição local como Centro de Educação Católica (CEC) Irmã Ambrósia Sabatovich, perpetuando seu nome no local onde ela plantou as primeiras sementes da educação.</p>
-
-                <h3>O Sacrifício Heróico em Rio das Antas</h3>
-                <p>Anos após sua passagem por São José dos Pinhais, Irmã Ambrósia foi transferida para o município de Cruz Machado (PR), no distrito de Rio das Antas, para trabalhar em um internato e orfanato que acolhia dezenas de meninas da região.</p>
-                <p>Na madrugada de 28 de fevereiro de 1943, uma tragédia mudou para sempre a história do local. Um incêndio devastador começou a consumir a estrutura de madeira do internato enquanto todos dormiam. Ao perceber o fogo, Irmã Ambrósia não hesitou: correu repetidas vezes para dentro do prédio em chamas, conseguindo salvar a grande maioria das estudantes que estavam presas nos dormitórios.</p>
-                <p>No entanto, ao notar a ausência de algumas crianças, ela entrou no local pela última vez. O teto desabou, e Irmã Ambrósia faleceu heroicamente no incêndio, abraçada a seis de suas alunas, em um ato de amor e doação total.</p>
-
-                <h3>Memória Viva e Beatificação</h3>
-                <p>O sacrifício da religiosa comoveu o Paraná e a comunidade ucraniana ao redor do mundo. Em 2008, devido à sua fama de santidade e ao martírio por caridade, a Igreja Católica deu início ao seu processo oficial de beatificação, tornando-a Serva de Deus.</p>
-                <p>Hoje, seja através do colégio na Colônia Marcelino ou das memórias preservadas em Cruz Machado, o nome de Irmã Ambrósia permanece como um símbolo de amor ao próximo, educação e coragem inabalável.</p>
+        <!-- ABA 2: INFORMAÇÕES & CONTATOS CLICÁVEIS -->
+        <section id="informacoes" class="page-tab">
+            <h2 class="text-3xl font-extrabold text-navy-800 mb-6 border-b-4 border-navy-500 pb-2 inline-block">
+                Informações de Contato
+            </h2>
+           
+            <p class="text-slate-600 mb-8">Clique em qualquer um dos cards abaixo para abrir diretamente o aplicativo de conversa, e-mail ou chamada.</p>
+            <div class="grid md:grid-cols-3 gap-6 mb-10">
+               
+                <!-- GMAIL CLICÁVEL -->
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=contato@ceias.edu.br" target="_blank" rel="noopener noreferrer"
+                   class="bg-white p-6 rounded-2xl shadow-md border-2 border-slate-100 hover:border-red-500 hover:shadow-2xl transition duration-300 block group">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-14 h-14 bg-red-100 text-red-600 rounded-xl flex items-center justify-center text-3xl group-hover:scale-110 transition">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-bold uppercase text-red-600 tracking-wider">Clique para enviar e-mail</span>
+                            <h3 class="text-xl font-extrabold text-slate-800">Gmail</h3>
+                        </div>
+                    </div>
+                    <p class="text-slate-600 text-sm mb-3">Abra o Gmail diretamente com o endereço preenchido.</p>
+                    <div class="text-red-600 font-bold text-sm flex items-center gap-2 group-hover:underline">
+                        <span>contato@ceias.edu.br</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    </div>
+                </a>
+                <!-- WHATSAPP CLICÁVEL -->
+                <a href="https://wa.me/5541999998888" target="_blank" rel="noopener noreferrer"
+                   class="bg-white p-6 rounded-2xl shadow-md border-2 border-slate-100 hover:border-emerald-500 hover:shadow-2xl transition duration-300 block group">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center text-3xl group-hover:scale-110 transition">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-bold uppercase text-emerald-600 tracking-wider">Conversar Agora</span>
+                            <h3 class="text-xl font-extrabold text-slate-800">WhatsApp</h3>
+                        </div>
+                    </div>
+                    <p class="text-slate-600 text-sm mb-3">Atendimento rápido para dúvidas e recados da comunidade.</p>
+                    <div class="text-emerald-600 font-bold text-sm flex items-center gap-2 group-hover:underline">
+                        <span>(41) 99999-8888</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    </div>
+                </a>
+                <!-- TELEFONE CLICÁVEL -->
+                <a href="tel:+554133332222"
+                   class="bg-white p-6 rounded-2xl shadow-md border-2 border-slate-100 hover:border-navy-500 hover:shadow-2xl transition duration-300 block group">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-14 h-14 bg-blue-100 text-navy-600 rounded-xl flex items-center justify-center text-3xl group-hover:scale-110 transition">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-bold uppercase text-navy-600 tracking-wider">Ligação Direta</span>
+                            <h3 class="text-xl font-extrabold text-slate-800">Telefone Fixo</h3>
+                        </div>
+                    </div>
+                    <p class="text-slate-600 text-sm mb-3">Secretaria do colégio em horário comercial.</p>
+                    <div class="text-navy-600 font-bold text-sm flex items-center gap-2 group-hover:underline">
+                        <span>(41) 3333-2222</span>
+                        <i class="fa-solid fa-phone-flip text-xs"></i>
+                    </div>
+                </a>
+            </div>
+            <!-- Horários de Funcionamento -->
+            <div class="bg-gradient-to-r from-navy-100 to-blue-50 border-l-8 border-navy-600 p-6 rounded-2xl shadow-sm">
+                <h3 class="text-2xl font-bold text-navy-800 mb-4 flex items-center gap-2">
+                    <i class="fa-regular fa-clock text-navy-600"></i> Horários de Funcionamento
+                </h3>
+                <div class="grid md:grid-cols-2 gap-6 text-slate-700">
+                    <div class="bg-white p-4 rounded-xl shadow-sm">
+                        <strong class="block text-navy-800 text-lg mb-1">🏫 Aulas e Funcionamento Geral:</strong>
+                        <p class="text-sm">Segunda a Sexta-feira: 07h00 às 18h00</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl shadow-sm">
+                        <strong class="block text-navy-800 text-lg mb-1">👩‍🏫 Atendimento Pedagógico:</strong>
+                        <p class="text-sm">Terças e Quintas-feiras (mediante agendamento via WhatsApp ou Telefone).</p>
+                    </div>
+                </div>
             </div>
         </section>
 
+        <!-- ABA 3: GALERIA DE IMAGENS -->
+        <section id="imagens" class="page-tab">
+            <h2 class="text-3xl font-extrabold text-navy-800 mb-6 border-b-4 border-navy-500 pb-2 inline-block">
+                Galeria de Fotos
+            </h2>
+            <p class="text-slate-600 mb-6">Conheça a estrutura e os momentos marcantes do Colégio CEIAS.</p>
+            <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+               
+                <div class="bg-white rounded-xl overflow-hidden shadow-md border border-slate-100 hover:shadow-lg transition">
+                    <img src="https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?q=80&w=600&auto=format&fit=crop" alt="Entrada do Colégio" class="w-full h-48 object-cover">
+                    <div class="p-3 text-center font-bold text-navy-800">Entrada e Fachada</div>
+                </div>
+                <div class="bg-white rounded-xl overflow-hidden shadow-md border border-slate-100 hover:shadow-lg transition">
+                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=600&auto=format&fit=crop" alt="Salas de Aula" class="w-full h-48 object-cover">
+                    <div class="p-3 text-center font-bold text-navy-800">Salas de Aula</div>
+                </div>
+                <div class="bg-white rounded-xl overflow-hidden shadow-md border border-slate-100 hover:shadow-lg transition">
+                    <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=600&auto=format&fit=crop" alt="Biblioteca" class="w-full h-48 object-cover">
+                    <div class="p-3 text-center font-bold text-navy-800">Biblioteca Escolar</div>
+                </div>
+                <div class="bg-white rounded-xl overflow-hidden shadow-md border border-slate-100 hover:shadow-lg transition">
+                    <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=600&auto=format&fit=crop" alt="Refeitório" class="w-full h-48 object-cover">
+                    <div class="p-3 text-center font-bold text-navy-800">Refeitório</div>
+                </div>
+                <div class="bg-white rounded-xl overflow-hidden shadow-md border border-slate-100 hover:shadow-lg transition">
+                    <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?q=80&w=600&auto=format&fit=crop" alt="Quadra de Esportes" class="w-full h-48 object-cover">
+                    <div class="p-3 text-center font-bold text-navy-800">Quadra Poliesportiva</div>
+                </div>
+                <div class="bg-white rounded-xl overflow-hidden shadow-md border border-slate-100 hover:shadow-lg transition">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=600&auto=format&fit=crop" alt="Estudantes e Uniforme" class="w-full h-48 object-cover">
+                    <div class="p-3 text-center font-bold text-navy-800">Estudantes no Pátio</div>
+                </div>
+                <div class="bg-white rounded-xl overflow-hidden shadow-md border border-slate-100 hover:shadow-lg transition">
+                    <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=600&auto=format&fit=crop" alt="Projetos no Campo" class="w-full h-48 object-cover">
+                    <div class="p-3 text-center font-bold text-navy-800">Projetos no Campo</div>
+                </div>
+                <div class="bg-white rounded-xl overflow-hidden shadow-md border border-slate-100 hover:shadow-lg transition">
+                    <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?q=80&w=600&auto=format&fit=crop" alt="Laboratório de Informática" class="w-full h-48 object-cover">
+                    <div class="p-3 text-center font-bold text-navy-800">Espaço de Tecnologia</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABA 4: EQUIPE / FUNCIONÁRIOS (COM SÍMBOLOS PERSONALIZADOS) -->
+        <section id="funcionarios" class="page-tab">
+            <h2 class="text-3xl font-extrabold text-navy-800 mb-3 border-b-4 border-navy-500 pb-2 inline-block">
+                Nossa Equipe
+            </h2>
+            <p class="text-slate-600 mb-6">
+                Representação da equipe por categorias simbólicas. Selecione um setor para ver os profissionais:
+            </p>
+            <!-- Botões de Filtros com Símbolos -->
+            <div class="flex flex-wrap gap-2 sm:gap-3 mb-8">
+                <button onclick="verFuncionario('professores')" class="equipe-btn bg-amber-500 hover:bg-amber-600 text-white font-bold px-4 py-2.5 rounded-xl transition shadow-md flex items-center gap-2">
+                    <span>🦉</span> Professores
+                </button>
+                <button onclick="verFuncionario('pedagogico')" class="equipe-btn bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2.5 rounded-xl transition shadow-md flex items-center gap-2">
+                    <span>🐱</span> Pedagógico
+                </button>
+                <button onclick="verFuncionario('inspetora')" class="equipe-btn bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2.5 rounded-xl transition shadow-md flex items-center gap-2">
+                    <span>🐦</span> Inspetoria
+                </button>
+                <button onclick="verFuncionario('limpeza')" class="equipe-btn bg-pink-500 hover:bg-pink-600 text-white font-bold px-4 py-2.5 rounded-xl transition shadow-md flex items-center gap-2">
+                    <span>🦋</span> Limpeza
+                </button>
+                <button onclick="verFuncionario('merenda')" class="equipe-btn bg-orange-600 hover:bg-orange-700 text-white font-bold px-4 py-2.5 rounded-xl transition shadow-md flex items-center gap-2">
+                    <span>🐻</span> Merenda Escolar
+                </button>
+            </div>
+            <!-- Container Dinâmico da Equipe Selecionada -->
+            <div id="funcionario-card" class="bg-white p-6 sm:p-10 rounded-3xl shadow-xl border border-slate-100">
+                <!-- Conteúdo inicial injetado via JS -->
+            </div>
+        </section>
+
+        <!-- ABA 5: AVALIAÇÕES / ESPAÇO DO LEITOR -->
+        <section id="avaliacao" class="page-tab">
+            <h2 class="text-3xl font-extrabold text-navy-800 mb-6 border-b-4 border-navy-500 pb-2 inline-block">
+                Espaço do Leitor / Avaliações
+            </h2>
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Formulário de Comentário -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-100">
+                    <h3 class="text-xl font-bold text-navy-800 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-pen-to-square text-navy-500"></i> Deixe seu Comentário ou Sugestão
+                    </h3>
+                   
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-1">Seu Nome / Vínculo:</label>
+                            <input type="text" id="nome-user" placeholder="Ex: Ana Paula (Mãe de Aluno)"
+                                   class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-navy-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-1">Sua Avaliação:</label>
+                            <textarea id="texto-opiniao" rows="4" placeholder="Escreva aqui seu comentário sobre o colégio..."
+                                      class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-navy-500 focus:outline-none"></textarea>
+                        </div>
+                        <button onclick="enviarComentario()"
+                                class="w-full bg-navy-600 hover:bg-navy-800 text-white font-bold py-3 rounded-xl transition shadow-md">
+                            Publicar Opinião
+                        </button>
+                    </div>
+                </div>
+                <!-- Mural de Comentários -->
+                <div>
+                    <h3 class="text-xl font-bold text-navy-800 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-comments text-navy-500"></i> Depoimentos Recentes
+                    </h3>
+                   
+                    <div id="mural-comentarios" class="space-y-4 max-h-[400px] overflow-y-auto pr-2">
+                        <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 border-navy-600">
+                            <div class="flex justify-between items-center mb-1">
+                                <strong class="text-navy-800">Ana Paula (Comunidade)</strong>
+                                <span class="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</span>
+                            </div>
+                            <p class="text-slate-600 text-sm">O CEIAS é uma escola incrível, muito organizada e acolhedora com os alunos e a comunidade rural!</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 border-navy-600">
+                            <div class="flex justify-between items-center mb-1">
+                                <strong class="text-navy-800">Carlos Eduardo (Ex-aluno)</strong>
+                                <span class="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</span>
+                            </div>
+                            <p class="text-slate-600 text-sm">Ótimos professores e ambiente muito seguro para os jovens de São José dos Pinhais.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABA 6: LOCALIZAÇÃO -->
+        <section id="localizacao" class="page-tab">
+            <h2 class="text-3xl font-extrabold text-navy-800 mb-6 border-b-4 border-navy-500 pb-2 inline-block">
+                Nossa Localização
+            </h2>
+            <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-100 mb-6 flex items-start gap-4">
+                <div class="text-3xl text-red-500 pt-1">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-navy-800">Colégio Estadual do Campo Irmã Ambrósia Sabatovich</h3>
+                    <p class="text-slate-600">📍 Colônia Marcelino — São José dos Pinhais, Paraná (PR)</p>
+                    <p class="text-slate-500 text-sm mt-1">Ambiente escolar rodeado pela natureza e integrado à comunidade tradicional.</p>
+                </div>
+            </div>
+            <!-- Mapa Google Embed -->
+            <div class="rounded-2xl overflow-hidden shadow-lg border-2 border-slate-200">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14389.288283307527!2d-49.1950!3d-25.6277!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjXCsDM3JzM5LjcyIlMgNDnCsDExJzQyLjAwIlc!5e0!3m2!1pt-BR!2sbr!4v1600000000000"
+                        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" class="w-full"></iframe>
+            </div>
+        </section>
+
+        <!-- ABA 7: EVENTOS (PRIMAVERA FEST & SEMANA CULTURAL) -->
+        <section id="eventos" class="page-tab">
+            <h2 class="text-3xl font-extrabold text-navy-800 mb-2 border-b-4 border-navy-500 pb-2 inline-block">
+                Eventos Escolares
+            </h2>
+            <p class="text-slate-600 mb-8">Clique em um dos eventos abaixo para abrir a experiência interativa:</p>
+            <!-- Botões dos Eventos -->
+            <div class="grid sm:grid-cols-2 gap-6 mb-8">
+                <button onclick="abrirEvento('primavera')"
+                        class="bg-gradient-to-r from-pink-500 to-rose-400 hover:from-pink-600 hover:to-rose-500 text-white p-6 rounded-2xl shadow-lg transition transform hover:-translate-y-1 text-left flex items-center justify-between group">
+                    <div>
+                        <span class="text-xs font-extrabold uppercase tracking-widest text-pink-100">Evento Primavera</span>
+                        <h3 class="text-2xl font-black mt-1">🌸 PRIMAVERA FEST 🦋</h3>
+                        <p class="text-sm opacity-90 mt-1">Concurso Garoto & Garota CEIAS e Animação Floridada.</p>
+                    </div>
+                    <i class="fa-solid fa-arrow-right text-2xl group-hover:translate-x-2 transition"></i>
+                </button>
+                <button onclick="abrirEvento('cultural')"
+                        class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white p-6 rounded-2xl shadow-lg transition transform hover:-translate-y-1 text-left flex items-center justify-between group">
+                    <div>
+                        <span class="text-xs font-extrabold uppercase tracking-widest text-purple-200">Exposição & Arte</span>
+                        <h3 class="text-2xl font-black mt-1">🎭 SEMANA CULTURAL 🎨</h3>
+                        <p class="text-sm opacity-90 mt-1">Apresentações folclóricas e o Jornal Express CEIAS.</p>
+                    </div>
+                    <i class="fa-solid fa-arrow-right text-2xl group-hover:translate-x-2 transition"></i>
+                </button>
+            </div>
+            <!-- EVENTO 1: PRIMAVERA FEST (SUB-ABA INTERATIVA ROSA) -->
+            <div id="evento-primavera" class="hidden relative bg-gradient-to-br from-pink-500 via-rose-400 to-pink-600 text-white p-6 sm:p-10 rounded-3xl shadow-2xl overflow-hidden min-h-[500px]">
+               
+                <!-- Containers de Animação -->
+                <div id="flores-container"></div>
+                <div id="borboletas-container"></div>
+                <div class="relative z-20 text-center max-w-3xl mx-auto space-y-6">
+                    <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight drop-shadow-md">
+                        🌸 BEM-VINDO À PRIMAVERA FEST 🌸
+                    </h1>
+                    <p class="text-lg sm:text-xl text-pink-100 font-medium">
+                        Celebração da estação mais florida do ano no Colégio CEIAS!
+                    </p>
+                    <div class="inline-block bg-white text-pink-600 font-black px-6 py-2.5 rounded-full text-base sm:text-lg shadow-xl">
+                        📅 DATA DO EVENTO: 12 DE SETEMBRO DE 2026
+                    </div>
+                    <div class="grid sm:grid-cols-2 gap-6 pt-4">
+                        <div class="bg-white/90 text-slate-800 p-5 rounded-2xl shadow-lg text-center backdrop-blur-sm">
+                            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=400&auto=format&fit=crop" alt="Menino e Menina CEIAS" class="w-full h-48 object-cover rounded-xl mb-3">
+                            <h3 class="font-extrabold text-lg text-pink-600">Garoto & Garota CEIAS</h3>
+                            <p class="text-xs text-slate-500">Concurso festivo de simpatia da escola</p>
+                        </div>
+                        <div class="bg-white/90 text-slate-800 p-5 rounded-2xl shadow-lg text-center backdrop-blur-sm">
+                            <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=400&auto=format&fit=crop" alt="Foto da Festa" class="w-full h-48 object-cover rounded-xl mb-3">
+                            <h3 class="font-extrabold text-lg text-pink-600">Momentos da Festa</h3>
+                            <p class="text-xs text-slate-500">Comidas típicas, música e diversão</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- EVENTO 2: SEMANA CULTURAL -->
+            <div id="evento-cultural" class="hidden space-y-6">
+                <div class="bg-gradient-to-r from-purple-800 to-indigo-900 text-white p-8 rounded-2xl shadow-lg text-center space-y-4">
+                    <span class="text-4xl">🎭🎨🎵</span>
+                    <h2 class="text-3xl font-extrabold">Semana Cultural CEIAS</h2>
+                    <p class="max-w-2xl mx-auto text-purple-200">
+                        Um mergulho na história, danças típicas ucranianas, teatro, música e literatura produzidos pelos nossos alunos!
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-100">
+                    <h3 class="text-xl font-bold text-navy-800 mb-4">📷 Galeria da Semana Cultural</h3>
+                    <div class="grid sm:grid-cols-3 gap-4">
+                        <div class="rounded-xl overflow-hidden shadow-sm border">
+                            <img src="https://images.unsplash.com/photo-1460518451285-97b6aa326961?q=80&w=400&auto=format&fit=crop" alt="Dança Típica" class="w-full h-40 object-cover">
+                            <p class="p-2 text-center text-sm font-semibold text-slate-700">Danças Folclóricas</p>
+                        </div>
+                        <div class="rounded-xl overflow-hidden shadow-sm border">
+                            <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=400&auto=format&fit=crop" alt="Exposição de Artes" class="w-full h-40 object-cover">
+                            <p class="p-2 text-center text-sm font-semibold text-slate-700">Exposição de Quadros</p>
+                        </div>
+                        <div class="rounded-xl overflow-hidden shadow-sm border">
+                            <img src="https://images.unsplash.com/photo-1469488865564-c2de10f69f96?q=80&w=400&auto=format&fit=crop" alt="Teatro Escolar" class="w-full h-40 object-cover">
+                            <p class="p-2 text-center text-sm font-semibold text-slate-700">Apresentações Teatrais</p>
+                        </div>
+                    </div>
+                    <div class="mt-8 text-center bg-purple-50 p-6 rounded-xl border border-purple-200">
+                        <h4 class="text-lg font-bold text-purple-900 mb-2">Acesse a cobertura completa da imprensa escolar:</h4>
+                        <button onclick="abrirJornal()" class="bg-red-600 hover:bg-red-700 text-white font-extrabold px-6 py-3 rounded-xl shadow-lg transition">
+                            📰 EXPRESS CEIAS - JORNAL CULTURAL
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABA 8: HISTÓRIA DO COLÉGIO -->
+        <section id="historia" class="page-tab">
+            <h2 class="text-3xl font-extrabold text-navy-800 mb-6 border-b-4 border-navy-500 pb-2 inline-block">
+                Nossa História
+            </h2>
+            <div class="bg-white p-6 sm:p-10 rounded-2xl shadow-md border border-slate-100 space-y-6 text-slate-700 leading-relaxed">
+               
+                <div class="border-b pb-4">
+                    <h3 class="text-2xl font-extrabold text-navy-800 mb-2">
+                        O sacrifício e o legado de fé: A história de Irmã Ambrósia Sabatovich
+                    </h3>
+                    <p class="text-sm text-slate-500 italic">Serva de Deus e patrona de nossa instituição de ensino.</p>
+                </div>
+                <p class="text-base sm:text-lg font-medium text-slate-800">
+                    A história do Colégio Irmã Ambrósia e das instituições que carregam seu nome está profundamente entrelaçada com a vida, a dedicação e o ato de heroísmo extremo de uma religiosa que marcou a comunidade ucraniana no Paraná: <strong>Irmã Ambrósia Ana Sabatovycz</strong>.
+                </p>
+                <div class="space-y-4">
+                    <h4 class="text-xl font-bold text-navy-700 flex items-center gap-2">
+                        <i class="fa-solid fa-graduation-cap text-navy-500"></i> Do Trabalho Comunitário ao Ensino
+                    </h4>
+                    <p>
+                        Nascida na Ucrânia e trazida ao Brasil ainda bebê, Ambrósia ingressou na Congregação das Irmãs Servas de Maria Imaculada. Em 1931, sua trajetória cruzou-se com a da Colônia Marcelino, em São José dos Pinhais (PR). Naquela comunidade de imigrantes, ela atuou como professora, catequista e enfermeira. Mais do que alfabetizar, a religiosa preservava a cultura local ensinando o idioma ucraniano e cuidando da saúde dos moradores, tornando-se uma figura central e muito querida na região.
+                    </p>
+                    <p>
+                        Décadas mais tarde, em honra a esse trabalho fundamental, a comunidade escolar da Colônia Marcelino batizou a instituição local como Centro de Educação Católica (CEC) Irmã Ambrósia Sabatovich, perpetuando seu nome no local onde ela plantou as primeiras sementes da educação.
+                    </p>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="text-xl font-bold text-navy-700 flex items-center gap-2">
+                        <i class="fa-solid fa-heart-crack text-red-500"></i> O Sacrifício Heróico em Rio das Antas
+                    </h4>
+                    <p>
+                        Anos após sua passagem por São José dos Pinhais, Irmã Ambrósia foi transferida para o município de Cruz Machado (PR), no distrito de Rio das Antas, para trabalhar em um internato e orfanato que acolhia dezenas de meninas da região.
+                    </p>
+                    <p>
+                        Na madrugada de 28 de fevereiro de 1943, uma tragédia mudou para sempre a história do local. Um incêndio devastador começou a consumir a estrutura de madeira do internato enquanto todos dormiam. Ao perceber o fogo, Irmã Ambrósia não hesitou: correu repetidas vezes para dentro do prédio em chamas, conseguindo salvar a grande maioria das estudantes que estavam presas nos dormitórios.
+                    </p>
+                    <p class="bg-amber-50 p-4 border-l-4 border-amber-500 rounded-r-lg font-semibold text-slate-800">
+                        No entanto, ao notar a ausência de algumas crianças, ela entrou no local pela última vez. O teto desabou, e Irmã Ambrósia faleceu heroicamente no incêndio, abraçada a seis de suas alunas, em um ato incondicional de amor.
+                    </p>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="text-xl font-bold text-navy-700 flex items-center gap-2">
+                        <i class="fa-solid fa-place-of-worship text-navy-500"></i> Memória Viva e Beatificação
+                    </h4>
+                    <p>
+                        O sacrifício da religiosa comoveu o Paraná e a comunidade ucraniana ao redor do mundo. Em 2008, devido à sua fama de santidade e ao martírio por caridade, a Igreja Católica deu início ao seu processo oficial de beatificação, tornando-a Serva de Deus.
+                    </p>
+                    <p>
+                        Hoje, através do colégio na Colônia Marcelino e das memórias preservadas, o nome de Irmã Ambrósia permanece como um símbolo eterno de amor ao próximo, educação e coragem inabalável.
+                    </p>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- MODAL DO JORNAL (EXPRESS CEIAS) -->
-    <div id="modal-jornal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="fecharJornal()">&times;</span>
-            <h2>📰 EXPRESS CEIAS</h2>
-            <p><strong>O Jornal Oficial da Semana Cultural</strong></p>
-            <hr><br>
-            <p>Durante toda a Semana Cultural, os alunos do CEIAS demonstraram talento excepcional em apresentações de dança folclórica, peças teatrais, poemas e artes plásticas.</p>
+    <!-- MODAL JORNAL EXPRESS CEIAS -->
+    <div id="modal-jornal" class="fixed inset-0 bg-black/70 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-xl w-full p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="fecharJornal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-800 text-2xl font-bold p-1">
+                &times;
+            </button>
+           
+            <div class="border-b-2 border-red-600 pb-3 mb-4">
+                <span class="bg-red-600 text-white text-xs font-black px-3 py-1 rounded-full uppercase tracking-widest">Edição Especial</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-2">📰 EXPRESS CEIAS</h2>
+                <p class="text-sm text-slate-500">O Jornal Oficial da Semana Cultural do CEIAS</p>
+            </div>
+            <div class="space-y-4 text-slate-700">
+                <h3 class="font-bold text-lg text-slate-900">Celebrando Nossas Raízes e Talentos</h3>
+                <p>
+                    Durante toda a Semana Cultural, nossos alunos demonstraram empenho e orgulho pelas tradições locais através de apresentações folclóricas, recitais e pinturas.
+                </p>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                    <h4 class="font-bold text-slate-800 mb-2">📌 Principais Destaques:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-sm">
+                        <li><strong>Apresentação de Dança Ucraniana:</strong> Ensino Médio.</li>
+                        <li><strong>Feira de Literatura Local:</strong> Poemas sobre a Colônia Marcelino.</li>
+                        <li><strong>Exposição de Pinturas:</strong> Obras inspiradas na flora paranaense.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-6 pt-4 border-t text-right">
+                <button onclick="fecharJornal()" class="bg-slate-800 hover:bg-slate-900 text-white font-bold px-5 py-2.5 rounded-lg transition text-sm">
+                    Fechar Jornal
+                </button>
+            </div>
         </div>
     </div>
 
+    <!-- RODAPÉ -->
+    <footer class="bg-navy-800 text-white py-8 mt-12 border-t border-navy-700">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-3">
+            <p class="font-bold text-lg">Colégio Estadual do Campo Irmã Ambrósia Sabatovich</p>
+            <p class="text-sm text-blue-200">Colônia Marcelino — São José dos Pinhais (PR)</p>
+            <p class="text-xs text-slate-400">© 2026 CEIAS. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Externo -->
     <script src="script.js"></script>
 </body>
 </html>
