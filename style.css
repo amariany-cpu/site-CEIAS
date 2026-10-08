@@ -6,35 +6,6 @@ body {
     color: #1e293b;
 }
 
-/* Animações Customizadas */
-@keyframes caindoFlores {
-    0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(500px) rotate(360deg); opacity: 0; }
-}
-
-.flor-animada {
-    position: absolute;
-    top: -20px;
-    font-size: 24px;
-    animation: caindoFlores linear infinite;
-    pointer-events: none;
-    z-index: 10;
-}
-
-@keyframes voandoBorboleta {
-    0% { left: -50px; top: 70%; transform: translateY(0) scale(0.8); }
-    50% { top: 20%; transform: translateY(-30px) scale(1.1); }
-    100% { left: 105%; top: 50%; transform: translateY(0) scale(0.8); }
-}
-
-.borboleta-animada {
-    position: absolute;
-    font-size: 30px;
-    animation: voandoBorboleta 10s linear infinite;
-    pointer-events: none;
-    z-index: 11;
-}
-
 .page-tab {
     display: none;
 }
@@ -48,3 +19,85 @@ body {
     from { opacity: 0; transform: translateY(6px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* =================================================== */
+/* CROP / RECORTE DOS ÍCONES DAS MATÉRIAS VIA CSS */
+/* =================================================== */
+
+.crop-icon-box {
+    width: 100px;
+    height: 90px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 12px;
+    background-color: #faf9f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.crop-icon-box img {
+    position: absolute;
+    max-width: none;
+    width: 320px; /* Expande a imagem para focar no recorte */
+}
+
+/* --- RECORTES DA IMAGEM 1 (simbolos 1.jpeg) --- */
+/* História (Linha 1, Coluna 1) */
+.icon-historia img { top: -10px; left: -10px; }
+
+/* Matemática (Linha 1, Coluna 2) */
+.icon-matematica img { top: -10px; left: -110px; }
+
+/* Língua Portuguesa (Linha 1, Coluna 3) */
+.icon-portugues img { top: -10px; left: -210px; }
+
+/* Artes (Linha 2, Coluna 1) */
+.icon-artes img { top: -105px; left: -10px; }
+
+/* Ciências (Linha 2, Coluna 2) */
+.icon-ciencias img { top: -105px; left: -110px; }
+
+/* Geografia (Linha 2, Coluna 3) */
+.icon-geografia img { top: -105px; left: -210px; }
+
+
+/* --- RECORTES DA IMAGEM 2 (simbolos 2.jpeg) --- */
+.crop-icon-box-2 {
+    width: 100px;
+    height: 90px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 12px;
+    background-color: #faf9f6;
+}
+
+.crop-icon-box-2 img {
+    position: absolute;
+    max-width: none;
+    width: 420px;
+}
+
+/* Física (L1, C1) */
+.icon-fisica img { top: -12px; left: -12px; }
+
+/* Educação Física (L1, C2) */
+.icon-edfisica img { top: -12px; left: -115px; }
+
+/* Inglês (L1, C3) */
+.icon-ingles img { top: -12px; left: -218px; }
+
+/* Robótica (L1, C4) */
+.icon-robotica img { top: -12px; left: -318px; }
+
+/* Educação Financeira (L2, C1) */
+.icon-financeira img { top: -108px; left: -12px; }
+
+/* Química (L2, C2) */
+.icon-quimica img { top: -108px; left: -115px; }
+
+/* Filosofia (L2, C3) */
+.icon-filosofia img { top: -108px; left: -218px; }
+
+/* Sociologia (L2, C4) */
+.icon-sociologia img { top: -108px; left: -318px; }
