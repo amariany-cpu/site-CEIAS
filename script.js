@@ -1,3 +1,14 @@
+// Efeito de Batimento de Coração na Logo
+function pulsarLogo(elemento) {
+    let el = elemento;
+    if (!el.classList.contains('pulsar-coracao')) {
+        el.classList.add('pulsar-coracao');
+        setTimeout(() => {
+            el.classList.remove('pulsar-coracao');
+        }, 850);
+    }
+}
+
 // Alternância de Abas
 function nav(paginaId) {
     const paginas = document.querySelectorAll('.page-tab');
@@ -16,7 +27,7 @@ function toggleMobileMenu() {
     menu.classList.toggle('hidden');
 }
 
-// ESTRUTURA COM AS IMAGENS INDIVIDUAIS DE CADA DISCIPLINA
+// ESTRUTURA COM FOTOS BEM MAIORES PARA CADA MATÉRIA
 const funcionariosData = {
     pedagogico: {
         titulo: "Direção e Equipe Pedagógica",
@@ -30,7 +41,7 @@ const funcionariosData = {
     },
     professores: {
         titulo: "Professores por Disciplina",
-        descricao: "Corpo docente e suas respetivas disciplinas de ensino com ilustrações.",
+        descricao: "Corpo docente e suas respetivas disciplinas de ensino com ilustrações em destaque.",
         materias: [
             { disciplina: "Filosofia", professores: ["Maike"], foto: "FILOSOFIA.jpg" },
             { disciplina: "Língua Inglesa", professores: ["Susana", "Giovana"], foto: "INGLES.jpg" },
@@ -52,7 +63,7 @@ const funcionariosData = {
     }
 };
 
-// Renderizar Equipe
+// Renderizar Equipe com Cards e Fotos Expandidas
 function verFuncionario(categoria) {
     const container = document.getElementById('funcionario-card');
     const dados = funcionariosData[categoria];
@@ -64,7 +75,7 @@ function verFuncionario(categoria) {
         dados.membros.forEach(m => {
             cards += `
                 <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 text-center flex flex-col items-center hover:shadow-md transition">
-                    <div class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center text-2xl mb-3 shadow-inner">
+                    <div class="w-20 h-20 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center text-3xl mb-3 shadow-inner">
                         <i class="fa-solid ${m.icone}"></i>
                     </div>
                     <h4 class="font-extrabold text-slate-800 text-lg mb-1">${m.nome}</h4>
@@ -85,14 +96,15 @@ function verFuncionario(categoria) {
     } else if (categoria === 'professores') {
         let cards = '';
         dados.materias.forEach(m => {
-            const listaProfs = m.professores.map(p => `<li class="font-bold text-slate-800 text-sm">${p}</li>`).join('');
+            const listaProfs = m.professores.map(p => `<li class="font-bold text-slate-800 text-base">${p}</li>`).join('');
             cards += `
-                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 text-center flex flex-col items-center hover:shadow-md transition">
-                    <div class="w-24 h-24 rounded-2xl overflow-hidden mb-3 border border-slate-100 shadow-sm flex items-center justify-center bg-slate-50">
-                        <img src="${m.foto}" alt="${m.disciplina}" class="w-full h-full object-contain p-1">
+                <div class="bg-white p-5 rounded-3xl shadow-md border border-slate-200 text-center flex flex-col items-center hover:shadow-xl hover:border-amber-400 transition group">
+                    <!-- Aumento significativo da área e imagem da matéria -->
+                    <div class="w-full h-44 rounded-2xl overflow-hidden mb-4 border border-slate-100 shadow-inner flex items-center justify-center bg-slate-50 p-2 group-hover:scale-105 transition duration-300">
+                        <img src="${m.foto}" alt="${m.disciplina}" class="w-full h-full object-contain">
                     </div>
-                    <span class="text-xs bg-amber-500 text-white font-extrabold px-3 py-0.5 rounded-full mb-2 uppercase tracking-wider">${m.disciplina}</span>
-                    <ul class="space-y-0.5 my-1">
+                    <span class="text-xs bg-amber-500 text-white font-black px-4 py-1 rounded-full mb-3 uppercase tracking-wider shadow-sm">${m.disciplina}</span>
+                    <ul class="space-y-1 my-1">
                         ${listaProfs}
                     </ul>
                 </div>
@@ -104,7 +116,7 @@ function verFuncionario(categoria) {
                 <h3 class="text-2xl font-black text-navy-800">📚 ${dados.titulo}</h3>
                 <p class="text-slate-600 text-sm">${dados.descricao}</p>
             </div>
-            <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+            <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 ${cards}
             </div>
         `;
