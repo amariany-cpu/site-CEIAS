@@ -1,4 +1,4 @@
-// Navegação entre abas
+// Alternância de Abas
 function nav(paginaId) {
     const paginas = document.querySelectorAll('.page-tab');
     paginas.forEach(p => p.classList.remove('active'));
@@ -10,13 +10,13 @@ function nav(paginaId) {
     }
 }
 
-// Menu Mobile
+// Menu Mobile Toggle
 function toggleMobileMenu() {
     const menu = document.getElementById('mobile-menu');
     menu.classList.toggle('hidden');
 }
 
-// DADOS DA DIREÇÃO, PEDAGOGIA E PROFESSORES COM BASE NAS GUIAS
+// ESTRUTURA COM AS IMAGENS INDIVIDUAIS DE CADA DISCIPLINA
 const funcionariosData = {
     pedagogico: {
         titulo: "Direção e Equipe Pedagógica",
@@ -30,29 +30,29 @@ const funcionariosData = {
     },
     professores: {
         titulo: "Professores por Disciplina",
-        descricao: "Corpo docente e suas respetivas disciplinas de ensino.",
+        descricao: "Corpo docente e suas respetivas disciplinas de ensino com ilustrações.",
         materias: [
-            { disciplina: "Filosofia", professores: ["Maike"] },
-            { disciplina: "Lígua Inglesa", professores: ["Susana", "Giovana"] },
-            { disciplina: "Matemática", professores: ["Henrique", "Paula", "Cristian", "Adilson"] },
-            { disciplina: "Sociologia", professores: ["Rafael"] },
-            { disciplina: "Artes", professores: ["Sandra"] },
-            { disciplina: "Química", professores: ["Marcos"] },
-            { disciplina: "Física", professores: ["Cristian"] },
-            { disciplina: "História", professores: ["Vandre"] },
-            { disciplina: "Ciências", professores: ["Malu", "Erli"] },
-            { disciplina: "Biologia", professores: ["Erli"] },
-            { disciplina: "Educação Física", professores: ["Emerson", "Roberto"] },
-            { disciplina: "Língua Portuguesa", professores: ["Susana", "Giovana", "Rodrigo", "Alceu"] },
-            { disciplina: "Geografia", professores: ["Sidney"] },
-            { disciplina: "Programação / IA", professores: ["Roberto"] },
-            { disciplina: "Educação Financeira", professores: ["Paula", "Cristian", "Adilson"] },
-            { disciplina: "Robótica", professores: ["Cristian"] }
+            { disciplina: "Filosofia", professores: ["Maike"], foto: "FILOSOFIA.jpg" },
+            { disciplina: "Língua Inglesa", professores: ["Susana", "Giovana"], foto: "INGLES.jpg" },
+            { disciplina: "Matemática", professores: ["Henrique", "Paula", "Cristian", "Adilson"], foto: "MATEMATICA.jpg" },
+            { disciplina: "Sociologia", professores: ["Rafael"], foto: "SOCIOLOGIA.jpg" },
+            { disciplina: "Artes", professores: ["Sandra"], foto: "ARTES.jpg" },
+            { disciplina: "Química", professores: ["Marcos"], foto: "RAFAEL.jpg" },
+            { disciplina: "Física", professores: ["Cristian"], foto: "FISICA.jpg" },
+            { disciplina: "História", professores: ["Vandré"], foto: "HISTORIA.jpg" },
+            { disciplina: "Ciências", professores: ["Malu", "Erli"], foto: "CIENCIAS.jpg" },
+            { disciplina: "Biologia", professores: ["Erli"], foto: "CIENCIAS.jpg" },
+            { disciplina: "Educação Física", professores: ["Emerson", "Roberto"], foto: "EDUCAÇÃO FISICA.jpg" },
+            { disciplina: "Língua Portuguesa", professores: ["Susana", "Giovana", "Rodrigo", "Alceu"], foto: "PORTUGUES.jpg" },
+            { disciplina: "Geografia", professores: ["Sidney"], foto: "GEOGRAFIA.jpg" },
+            { disciplina: "Programação / IA", professores: ["Roberto"], foto: "ROBOTICA.jpg" },
+            { disciplina: "Educação Financeira", professores: ["Paula", "Cristian", "Adilson"], foto: "FINANCEIRA.jpg" },
+            { disciplina: "Robótica", professores: ["Cristian"], foto: "ROBOTICA.jpg" }
         ]
     }
 };
 
-// Função para exibir a equipe clicada
+// Renderizar Equipe
 function verFuncionario(categoria) {
     const container = document.getElementById('funcionario-card');
     const dados = funcionariosData[categoria];
@@ -85,11 +85,14 @@ function verFuncionario(categoria) {
     } else if (categoria === 'professores') {
         let cards = '';
         dados.materias.forEach(m => {
-            const listaProfs = m.professores.map(p => `<li class="font-bold text-slate-700 text-sm">${p}</li>`).join('');
+            const listaProfs = m.professores.map(p => `<li class="font-bold text-slate-800 text-sm">${p}</li>`).join('');
             cards += `
                 <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 text-center flex flex-col items-center hover:shadow-md transition">
-                    <span class="text-xs bg-amber-500 text-white font-extrabold px-3 py-1 rounded-full mb-3 uppercase tracking-wider">${m.disciplina}</span>
-                    <ul class="space-y-1 my-2">
+                    <div class="w-24 h-24 rounded-2xl overflow-hidden mb-3 border border-slate-100 shadow-sm flex items-center justify-center bg-slate-50">
+                        <img src="${m.foto}" alt="${m.disciplina}" class="w-full h-full object-contain p-1">
+                    </div>
+                    <span class="text-xs bg-amber-500 text-white font-extrabold px-3 py-0.5 rounded-full mb-2 uppercase tracking-wider">${m.disciplina}</span>
+                    <ul class="space-y-0.5 my-1">
                         ${listaProfs}
                     </ul>
                 </div>
@@ -180,7 +183,7 @@ function iniciarAnimacoesPrimavera() {
     }
 }
 
-// Carregar Direção e Pedagógico por padrão ao abrir
+// Inicializar na aba Direção/Pedagógico ao abrir
 document.addEventListener('DOMContentLoaded', function() {
     verFuncionario('pedagogico');
 });
