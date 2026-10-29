@@ -1,4 +1,4 @@
-// Efeito de Batimento de Coração na Logo
+// Efeito de Batimento de Coração na Logo ao Clicar
 function pulsarLogo(elemento) {
     let el = elemento;
     if (!el.classList.contains('pulsar-coracao')) {
@@ -27,7 +27,7 @@ function toggleMobileMenu() {
     menu.classList.toggle('hidden');
 }
 
-// ESTRUTURA COM FOTOS BEM MAIORES PARA CADA MATÉRIA
+// ESTRUTURA COM FOTOS E PROFESSORES
 const funcionariosData = {
     pedagogico: {
         titulo: "Direção e Equipe Pedagógica",
@@ -41,7 +41,7 @@ const funcionariosData = {
     },
     professores: {
         titulo: "Professores por Disciplina",
-        descricao: "Corpo docente e suas respetivas disciplinas de ensino com ilustrações em destaque.",
+        descricao: "Corpo docente e suas respetivas disciplinas de ensino com artes em destaque.",
         materias: [
             { disciplina: "Filosofia", professores: ["Maike"], foto: "FILOSOFIA.jpg" },
             { disciplina: "Língua Inglesa", professores: ["Susana", "Giovana"], foto: "INGLES.jpg" },
@@ -63,7 +63,7 @@ const funcionariosData = {
     }
 };
 
-// Renderizar Equipe com Cards e Fotos Expandidas
+// Renderizar Equipe com Fotos Nítidas e Sem Fundo Branco
 function verFuncionario(categoria) {
     const container = document.getElementById('funcionario-card');
     const dados = funcionariosData[categoria];
@@ -98,10 +98,10 @@ function verFuncionario(categoria) {
         dados.materias.forEach(m => {
             const listaProfs = m.professores.map(p => `<li class="font-bold text-slate-800 text-base">${p}</li>`).join('');
             cards += `
-                <div class="bg-white p-5 rounded-3xl shadow-md border border-slate-200 text-center flex flex-col items-center hover:shadow-xl hover:border-amber-400 transition group">
-                    <!-- Aumento significativo da área e imagem da matéria -->
-                    <div class="w-full h-44 rounded-2xl overflow-hidden mb-4 border border-slate-100 shadow-inner flex items-center justify-center bg-slate-50 p-2 group-hover:scale-105 transition duration-300">
-                        <img src="${m.foto}" alt="${m.disciplina}" class="w-full h-full object-contain">
+                <div class="bg-slate-50 p-5 rounded-3xl shadow-md border border-slate-200 text-center flex flex-col items-center hover:shadow-xl hover:border-amber-400 transition group">
+                    <!-- Container que aplica zoom no centro do desenho e remove o fundo branco via mix-blend -->
+                    <div class="w-full h-40 rounded-2xl overflow-hidden mb-3 flex items-center justify-center bg-white shadow-inner p-1">
+                        <img src="${m.foto}" alt="${m.disciplina}" class="w-full h-full object-contain scale-150 mix-blend-multiply transition duration-300 group-hover:scale-175">
                     </div>
                     <span class="text-xs bg-amber-500 text-white font-black px-4 py-1 rounded-full mb-3 uppercase tracking-wider shadow-sm">${m.disciplina}</span>
                     <ul class="space-y-1 my-1">
